@@ -209,8 +209,8 @@ endif
 ############################################################################
 SWIG_CC_FLAGS = \
  $(SWIG_OPTIONS)\
- -I/usr/include/python2.6\
- -I/usr/include/python2.5\
+ -I/usr/include/python3.11\
+ -I/usr/include/python3.12\
  $(DEBUG)\
  $(OTHEROPTIONS)\
  $(INCLUDES)\

@@ -17,6 +17,7 @@
 #endif
 
 #include <vector>
+#include <cstddef>
 
 class CUserFlag // flag
 {

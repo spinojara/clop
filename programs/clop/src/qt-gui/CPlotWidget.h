@@ -1,8 +1,8 @@
 #ifndef CPLOTWIDGET_H
 #define CPLOTWIDGET_H
 
-#include <QWidget>
-#include <QColor>
+#include <QtWidgets/QWidget>
+#include <QtGui/QColor>
 
 #include "COutcome.h"
 

@@ -2,6 +2,7 @@
 #define CCLOPSYNTAXHIGHLIGHTER_H
 
 #include <QSyntaxHighlighter>
+#include <QtWidgets/QTextEdit>
 
 class CCLOPSyntaxHighlighter : public QSyntaxHighlighter
 {

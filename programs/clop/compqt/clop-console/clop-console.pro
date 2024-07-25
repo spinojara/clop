@@ -19,6 +19,7 @@ QT -= gui
 TARGET = clop-console
 CONFIG += console
 CONFIG -= app_bundle
+CONFIG += c++11
 TEMPLATE = app
 SOURCES += ../../src/real/clop-console.cpp \
     ../../src/real/CRealObserver.cpp \

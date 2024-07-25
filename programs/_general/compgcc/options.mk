@@ -106,7 +106,7 @@ else
   SWIG_OPTIONS := -w1 -O0
  else
   # test for the presence of ccache
-  CCACHE := $(shell ccache -V 2>/dev/null | head -1 | colrm 7)
+  #CCACHE := $(shell ccache -V 2>/dev/null | head -1 | colrm 7)
   ifeq ($(COMPILER),clang)
    CC = $(CCACHE) clang++ -Qunused-arguments -fcolor-diagnostics
   else

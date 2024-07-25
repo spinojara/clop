@@ -4,6 +4,8 @@
 TARGET = clop-gui
 TEMPLATE = app
 VERSION = 0.0.9
+CONFIG += c++11
+QT += core gui widgets
 INCLUDEPATH += ../../src/real \
     ../../src/qt-gui \
     ../../src/math \
@@ -82,5 +84,5 @@ QMAKE_CXXFLAGS_WARN_ON = -Wall \
     -Wextra \
     -Wno-unused-parameter \
     -Wno-long-long
-linux-g++:QMAKE_CXX = 'ccache g++'
+linux-g++:QMAKE_CXX = 'g++'
 win32:RC_FILE = ../../src/qt-gui/clop-gui.rc

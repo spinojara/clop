@@ -17,8 +17,10 @@ include $(DEPEND)
 ifeq ($(OSTYPE),cygwin)
  LDFLAGS := $(LDFLAGS) -lboost_thread-gcc-mt -lboost_filesystem-gcc-mt
 else
- LDFLAGS := $(LDFLAGS) -lboost_thread-mt -lboost_filesystem-mt
+ LDFLAGS := $(LDFLAGS) -lboost_thread -lboost_filesystem
 endif
+
+CFLAGS += -std=c++11
 
 OBJECTS := $(OBJECTS) $(patsubst %.o, $(OUTDIR)/%.o,\
  C2SPSA.o\

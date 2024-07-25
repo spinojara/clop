@@ -1,5 +1,5 @@
 #include "CRAIICursor.h"
-#include <QApplication>
+#include <QtWidgets/QApplication>
 
 CRAIICursor::CRAIICursor(const QCursor &cursor)
 {

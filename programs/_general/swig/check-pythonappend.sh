@@ -1,6 +1,6 @@
 #!/bin/bash
-grep check-pythonappend $1.i | sort | uniq >i.tmp
-grep check-pythonappend $1.py | sort | uniq >py.tmp
+grep check-pythonappend $1.i | sort | uniq | sed 's/        //g' >i.tmp
+grep check-pythonappend $1.py | sort | uniq | sed 's/        //g' >py.tmp
 diff i.tmp py.tmp || { echo "pythonappend error"; exit 1; }
 
 a=`grep -c '%pythonappend' $1.i`

@@ -75,7 +75,7 @@ def main(argv = None):
         sys.stderr.write('invalid seed value: %s\n' % argv[0])
         return 2
 
-    options = '-each proto=uci tc=40/10+1.05 -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file=clop-50cp5d6m100k.epd order=sequential start=%d' % (((clop_seed // 2) % 100000) + 1)
+    options = '-each proto=uci tc=40/1+0.05 -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file=clop-50cp5d6m100k.epd order=sequential start=%d' % (((clop_seed // 2) % 100000) + 1)
 
     fcp = engine
     scp = opponents[(clop_seed >> 1) % len(opponents)]

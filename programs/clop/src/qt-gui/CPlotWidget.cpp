@@ -16,7 +16,7 @@
 CPlotWidget::CPlotWidget(QWidget *parent):
  QWidget(parent),
  mw(0),
- backgroundColor(192, 192, 255)
+ backgroundColor(195, 112, 255)
 {
  setAttribute(Qt::WA_OpaquePaintEvent, true);
  outcomeColor[COutcome::Loss] = Qt::black;

@@ -35,13 +35,13 @@ import time
 # Log script invocations
 #
 f = open('DummyScript.log', 'a')
-print >>f, sys.argv
+#print >>f, sys.argv
 
 #
 # Print doc if not enough parameters
 #
 if len(sys.argv) < 5:
-    print __doc__
+    print(__doc__)
     sys.exit()
 
 #
@@ -77,8 +77,8 @@ loss_p = 1.0 / (1.0 + math.exp(-d2 + draw_rating))
 #
 r = random.random()
 if r < loss_p:
-    print "L"
+    print("L")
 elif r > 1.0 - win_p:
-    print "W"
+    print("W")
 else:
-    print "D"
+    print("D")

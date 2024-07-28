@@ -8,6 +8,7 @@
 
 #include <QPainter>
 #include <QMouseEvent>
+#include <QtCore/QSettings>
 #include <sstream>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,4 +183,19 @@ void CPlotWidget::mouseMoveEvent(QMouseEvent *event)
 
   mw->ui->statusBar->showMessage(oss.str().c_str());
  }
+}
+
+void CPlotWidget::storePointSize(int state) {
+ QSettings settings;
+ settings.setValue("pointSize", state);
+}
+
+void CPlotWidget::storeSampleWeight(int state) {
+ QSettings settings;
+ settings.setValue("sampleWeight", state);
+}
+
+void CPlotWidget::storeMergeReplications(int state) {
+ QSettings settings;
+ settings.setValue("mergeReplications", state);
 }

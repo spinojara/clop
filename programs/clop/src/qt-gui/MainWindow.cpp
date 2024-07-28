@@ -64,6 +64,17 @@ MainWindow::MainWindow(QWidget *parent):
  statusLabel = new QLabel();
  ui->statusBar->addPermanentWidget(statusLabel);
  setState(Opening);
+
+ //
+ // Load settings
+ //
+ QSettings settings;
+ int sampleWeight = settings.value("sampleWeight", QVariant(false)).toInt();
+ int mergeReplications = settings.value("mergeReplications", QVariant(true)).toInt();
+ int pointSize = settings.value("pointSize", QVariant(3)).toInt();
+ ui->sampleWeightCheckBox->setCheckState(sampleWeight ? Qt::Checked : Qt::Unchecked);
+ ui->mergeReplicationsCheckBox->setCheckState(mergeReplications ? Qt::Checked : Qt::Unchecked);
+ ui->pointSizeSpinBox->setValue(pointSize);
 }
 
 /////////////////////////////////////////////////////////////////////////////

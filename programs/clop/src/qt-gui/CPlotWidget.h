@@ -20,6 +20,11 @@ public:
     explicit CPlotWidget(QWidget *parent = 0);
     void setMainWindow(const MainWindow *mwNew) {mw = mwNew;}
 
+public slots:
+    void storePointSize(int state);
+    void storeSampleWeight(int state);
+    void storeMergeReplications(int state);
+
 protected:
     void paintEvent(QPaintEvent *event);
     void mouseMoveEvent( QMouseEvent *event);

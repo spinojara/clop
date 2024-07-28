@@ -563,6 +563,12 @@
    </hints>
   </connection>
   <connection>
+   <sender>pointSizeSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>plotWidget</receiver>
+   <slot>storePointSize(int)</slot>
+  </connection>
+  <connection>
    <sender>lastSpinBox</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lastSlider</receiver>
@@ -673,6 +679,18 @@
      <y>276</y>
     </hint>
    </hints>
+  </connection>
+  <connection>
+   <sender>sampleWeightCheckBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>plotWidget</receiver>
+   <slot>storeSampleWeight(int)</slot>
+  </connection>
+  <connection>
+   <sender>mergeReplicationsCheckBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>plotWidget</receiver>
+   <slot>storeMergeReplications(int)</slot>
   </connection>
   <connection>
    <sender>action_Automatic_GUI_update</sender>

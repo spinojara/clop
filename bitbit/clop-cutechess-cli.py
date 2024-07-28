@@ -45,7 +45,7 @@ engine = 'cmd=./tunebit'
 # set the parameter values. When the command is sent,
 # {name} will be replaced with the parameter name and {value}
 # with the parameter value.
-engine_param_cmd = 'setoption name {name} value {value}'
+# engine_param_cmd = 'setoption name {name} value {value}'
 
 # A pool of opponents for the engine. The opponent will be
 # chosen based on the seed sent by CLOP.
@@ -54,8 +54,11 @@ opponents = [
 ]
 
 # Additional cutechess-cli options, eg. time control and opening book
+options = '-each proto=uci tc=40/1+0.05 -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file=clop-50cp5d6m100k.epd order=sequential start={start} format=epd'
 
 def main(argv = None):
+    global options
+
     if argv is None:
         argv = sys.argv[1:]
 
@@ -74,8 +77,7 @@ def main(argv = None):
     except ValueError:
         sys.stderr.write('invalid seed value: %s\n' % argv[0])
         return 2
-
-    options = '-each proto=uci tc=40/1+0.05 -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file=clop-50cp5d6m100k.epd order=sequential start=%d' % (((clop_seed // 2) % 100000) + 1)
+    options = options.format(start=((clop_seed // 2) % 100000) + 1)
 
     fcp = engine
     scp = opponents[(clop_seed >> 1) % len(opponents)]
@@ -90,8 +92,7 @@ def main(argv = None):
             return 2
         # Pass CLOP's parameters to the engine by using
         # cutechess-cli's initialization string feature
-        initstr = engine_param_cmd.format(name = argv[i], value = argv[i + 1])
-        fcp += ' initstr="%s"' % initstr
+        fcp += ' option.%s=%s' % (argv[i], argv[i + 1])
 
     # Choose the engine's playing side (color) based on CLOP's seed
     if clop_seed % 2 != 0:

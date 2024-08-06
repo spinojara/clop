@@ -50,7 +50,7 @@ cutechess_cli_path = 'cutechess-cli'
 # chosen based on the seed sent by CLOP.
 
 # Additional cutechess-cli options, eg. time control and opening book
-options = '-each proto=uci tc=40/1+0.05 -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file={book} order=sequential start={start} format=epd'
+options = '-each proto=uci tc={tc} -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file={book} order=sequential start={start} format=epd'
 
 def main(argv = None):
     global options
@@ -62,7 +62,7 @@ def main(argv = None):
         sys.stdout.write(__doc__)
         return 0
 
-    if len(argv) < 4 or len(argv) % 2 == 1:
+    if len(argv) < 5 or len(argv) % 2 == 0:
         sys.stderr.write('Too few arguments\n')
         return 2
 
@@ -74,17 +74,17 @@ def main(argv = None):
 
     clop_seed = 0
     try:
-        clop_seed = int(argv[3])
+        clop_seed = int(argv[4])
     except ValueError:
-        sys.stderr.write('invalid seed value: %s\n' % argv[3])
+        sys.stderr.write('invalid seed value: %s\n' % argv[4])
         return 2
-    options = options.format(start=((clop_seed // 2) % 100000) + 1, book=argv[1])
+    options = options.format(start=((clop_seed // 2) % 100000) + 1, book=argv[1], tc=argv[2])
 
     fcp = engine
     scp = opponents[(clop_seed >> 1) % len(opponents)]
 
     # Parse the parameters that should be optimized
-    for i in range(4, len(argv) - 1, 2):
+    for i in range(5, len(argv) - 1, 2):
         # Make sure the parameter value is numeric
         try:
             float(argv[i + 1])

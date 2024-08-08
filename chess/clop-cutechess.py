@@ -72,10 +72,6 @@ def tcadjust(tc):
     else:
         maintime = tc
 
-    print(moves)
-    print(maintime)
-    print(increment)
-
     tc = ''
     if moves > 0:
         tc += f'{moves}/'

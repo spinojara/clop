@@ -52,6 +52,40 @@ cutechess_cli_path = 'cutechess-cli'
 # Additional cutechess-cli options, eg. time control and opening book
 options = '-each proto=uci tc={tc} -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file={book} order=sequential start={start} format=epd'
 
+def tcadjust(tc):
+    f = open('/etc/bitbit/tcfactor', 'r')
+    tcfactor = float(f.read().strip())
+    f.close()
+
+    moves = 0
+    maintime = 0
+    increment = 0
+
+    i = tc.find('/')
+    if i != -1:
+        moves = int(tc[:i])
+        tc = tc[i + 1:]
+    i = tc.find('+')
+    if i != -1:
+        maintime = float(tc[:i])
+        increment = float(tc[i + 1:])
+    else:
+        maintime = tc
+
+    print(moves)
+    print(maintime)
+    print(increment)
+
+    tc = ''
+    if moves > 0:
+        tc += f'{moves}/'
+    tc += f'{tcfactor * maintime}'
+    if increment > 0:
+        tc += f'+{tcfactor * increment}'
+
+    return tc
+
+
 def main(argv = None):
     global options
 
@@ -78,7 +112,7 @@ def main(argv = None):
     except ValueError:
         sys.stderr.write('invalid seed value: %s\n' % argv[4])
         return 2
-    options = options.format(start=((clop_seed // 2) % 100000) + 1, book=argv[1], tc=argv[2])
+    options = options.format(start=((clop_seed // 2) % 100000) + 1, book=argv[1], tc=tcadjust(argv[2]))
 
     fcp = engine
     scp = opponents[(clop_seed >> 1) % len(opponents)]

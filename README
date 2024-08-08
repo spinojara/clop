@@ -2,6 +2,10 @@ CLOP
 ====
 Fork of CLOP available at <https://www.remi-coulom.fr/CLOP/>.
 
+For chess/clop-cutechess.py to work properly it needs the file
+/etc/bitbit/tcfactor. Use the program tcfactor in
+<https://github.com/spinojara/testbit> to generate this file.
+
 
 Original CLOP README by Rémi
 ============================

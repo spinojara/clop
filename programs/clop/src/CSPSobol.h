@@ -12,13 +12,9 @@
 
 #include "CSPQuasiRandom.h"
 
-class CSPSobol: public CSPQuasiRandom
-{
- public:
-  CSPSobol(int Dimensions): CSPQuasiRandom(Dimensions)
-  {
-   q = gsl_qrng_alloc(gsl_qrng_sobol, Dimensions);
-  }
+class CSPSobol : public CSPQuasiRandom {
+      public:
+	CSPSobol(int Dimensions) : CSPQuasiRandom(Dimensions) { q = gsl_qrng_alloc(gsl_qrng_sobol, Dimensions); }
 };
 
 #endif

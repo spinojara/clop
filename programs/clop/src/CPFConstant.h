@@ -12,19 +12,18 @@
 
 #include "CParametricFunction.h"
 
-class CPFConstant: public CParametricFunction // pfc
+class CPFConstant : public CParametricFunction // pfc
 {
- public: ////////////////////////////////////////////////////////////////////
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CPFConstant(int Dimensions) : CParametricFunction(Dimensions, 1) {}
 
-  explicit CPFConstant(int Dimensions): CParametricFunction(Dimensions, 1) {}
-
-  //
-  // Overrides of CParametricFunction
-  //
-  double GetValue(const double *vParam, const double *vx) const;
-  bool GetMax(const double *vParam, double *vx) const;
-  void GetMonomials(const double *vx, double *vMonomial) const;
-  void GetGradient(const double *vParam, const double *vx, double *vG) const;
+	//
+	// Overrides of CParametricFunction
+	//
+	double GetValue(const double *vParam, const double *vx) const;
+	bool GetMax(const double *vParam, double *vx) const;
+	void GetMonomials(const double *vx, double *vMonomial) const;
+	void GetGradient(const double *vParam, const double *vx, double *vG) const;
 };
 
 #endif

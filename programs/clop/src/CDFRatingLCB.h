@@ -12,16 +12,16 @@
 
 #include "CDFConfidence.h"
 
-class CDFRatingLCB: public CDFConfidence // dfrlcb
+class CDFRatingLCB : public CDFConfidence // dfrlcb
 {
- private: ///////////////////////////////////////////////////////////////////
-  double alpha;
+      private: ///////////////////////////////////////////////////////////////////
+	double alpha;
 
- public: ////////////////////////////////////////////////////////////////////
-  CDFRatingLCB(CRegression &reg, double alpha);
+      public: ////////////////////////////////////////////////////////////////////
+	CDFRatingLCB(CRegression &reg, double alpha);
 
-  double GetOutput(const double *vInput);
-  void ComputeGradient();
+	double GetOutput(const double *vInput);
+	void ComputeGradient();
 };
 
 #endif

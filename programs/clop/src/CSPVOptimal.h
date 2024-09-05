@@ -16,29 +16,27 @@
 #include "CRegression.h"
 #include "CSPWeight.h"
 
-class CSPVOptimal: public CSamplingPolicy // vopt
+class CSPVOptimal : public CSamplingPolicy // vopt
 {
- private: ////////////////////////////////////////////////////////////////////
-  const CRegression &reg;
-  CDFVariance &dfvar;
-  const int Trials;
+      private: ////////////////////////////////////////////////////////////////////
+	const CRegression &reg;
+	CDFVariance &dfvar;
+	const int Trials;
 
-  CRandom<unsigned> rnd;
-  std::vector<double> v;
-  std::vector<double> vTrial;
+	CRandom<unsigned> rnd;
+	std::vector<double> v;
+	std::vector<double> vTrial;
 
-  int nTotal;
+	int nTotal;
 
-  CSPWeight spCG;
-  CSPWeight spFail;
+	CSPWeight spCG;
+	CSPWeight spFail;
 
- public: ////////////////////////////////////////////////////////////////////
-  CSPVOptimal(const CRegression &reg,
-              CDFVariance &dfvar,
-              int Trials = 0);
-  void Seed(unsigned n);
-  const double *NextSample(int i);
-  void Reserve(unsigned n) {reg.Reserve(n);}
+      public: ////////////////////////////////////////////////////////////////////
+	CSPVOptimal(const CRegression &reg, CDFVariance &dfvar, int Trials = 0);
+	void Seed(unsigned n);
+	const double *NextSample(int i);
+	void Reserve(unsigned n) { reg.Reserve(n); }
 };
 
 #endif

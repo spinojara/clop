@@ -12,16 +12,16 @@
 
 #include "CParameter.h"
 
-class CGammaParameter: public CParameter // gparam
+class CGammaParameter : public CParameter // gparam
 {
- private: ///////////////////////////////////////////////////////////////////
-  const double Min;
-  const double Max;
+      private: ///////////////////////////////////////////////////////////////////
+	const double Min;
+	const double Max;
 
- public: ////////////////////////////////////////////////////////////////////
-  CGammaParameter(const std::string &s, double Min, double Max);
-  double TransformToQLR(double x) const;
-  double TransformFromQLR(double x) const;
+      public: ////////////////////////////////////////////////////////////////////
+	CGammaParameter(const std::string &s, double Min, double Max);
+	double TransformToQLR(double x) const;
+	double TransformFromQLR(double x) const;
 };
 
 #endif

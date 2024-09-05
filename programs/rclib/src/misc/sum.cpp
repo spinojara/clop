@@ -11,20 +11,18 @@
 ////////////////////////////////////////////////////////////////////////////
 #include <iostream>
 
-int main(void)
-{
- int i;
- int Result = 0;
+int main(void) {
+	int i;
+	int Result = 0;
 
- for(;;)
- {
-  cin >> i;
-  if (cin.eof())
-   break;
-  Result += i;
- }
+	for (;;) {
+		cin >> i;
+		if (cin.eof())
+			break;
+		Result += i;
+	}
 
- cout << Result << '\n';
+	cout << Result << '\n';
 
- return 0;
+	return 0;
 }

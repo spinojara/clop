@@ -15,18 +15,18 @@
 
 #include <vector>
 
-class CSPUniform: public CSamplingPolicy // unif
+class CSPUniform : public CSamplingPolicy // unif
 {
- private: ////////////////////////////////////////////////////////////////////
-  std::vector<double> v; 
-  CRandom<unsigned> rnd;
-  const double Min;
-  const double Max;
+      private: ////////////////////////////////////////////////////////////////////
+	std::vector<double> v;
+	CRandom<unsigned> rnd;
+	const double Min;
+	const double Max;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CSPUniform(int Dimensions, double Min = -1.0, double Max = 1.0);
-  void Seed(unsigned n) {rnd.Seed(n);}
-  const double *NextSample(int i);
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CSPUniform(int Dimensions, double Min = -1.0, double Max = 1.0);
+	void Seed(unsigned n) { rnd.Seed(n); }
+	const double *NextSample(int i);
 };
 
 #endif

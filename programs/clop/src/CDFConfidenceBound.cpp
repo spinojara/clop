@@ -13,17 +13,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CDFConfidenceBound::CDFConfidenceBound(CRegression &reg, double Alpha):
- CDFConfidence(reg),
- Alpha(Alpha)
-{
-}
+CDFConfidenceBound::CDFConfidenceBound(CRegression &reg, double Alpha) : CDFConfidence(reg), Alpha(Alpha) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Get output
 /////////////////////////////////////////////////////////////////////////////
-double CDFConfidenceBound::GetOutput(const double *vInput)
-{
- ComputeVariance(vInput);
- return CLogistic::f(r + Alpha * dev);
+double CDFConfidenceBound::GetOutput(const double *vInput) {
+	ComputeVariance(vInput);
+	return CLogistic::f(r + Alpha * dev);
 }

@@ -14,15 +14,15 @@
 
 class CRegression;
 
-class CMEQLRLCB: public CMaxEstimator // meqlrlcb
+class CMEQLRLCB : public CMaxEstimator // meqlrlcb
 {
- private: ///////////////////////////////////////////////////////////////////
-  CRegression &reg;
-  const double alpha;
+      private: ///////////////////////////////////////////////////////////////////
+	CRegression &reg;
+	const double alpha;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CMEQLRLCB(CRegression &reg, double alpha = 0.0);
-  bool MaxParameter(double vMax[]) const;
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CMEQLRLCB(CRegression &reg, double alpha = 0.0);
+	bool MaxParameter(double vMax[]) const;
 };
 
 #endif

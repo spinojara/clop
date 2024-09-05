@@ -17,42 +17,39 @@
 ////////////////////////////////////////////////////////////////////////////
 // output operator
 ////////////////////////////////////////////////////////////////////////////
-std::ostream &operator<<(std::ostream &ostr, const CTime &time)
-{
- char cOldFill = ostr.fill('0');
- std::streamsize OldWidth = ostr.width(2);
+std::ostream &operator<<(std::ostream &ostr, const CTime &time) {
+	char cOldFill = ostr.fill('0');
+	std::streamsize OldWidth = ostr.width(2);
 
- ostr << std::setw(2) << time.GetHours() << ':';
- ostr << std::setw(2) << time.GetMinutes() << ':';
- ostr << std::setw(2) << time.GetSeconds() << ',';
- ostr << std::setw(2) << time.GetHundredths();
+	ostr << std::setw(2) << time.GetHours() << ':';
+	ostr << std::setw(2) << time.GetMinutes() << ':';
+	ostr << std::setw(2) << time.GetSeconds() << ',';
+	ostr << std::setw(2) << time.GetHundredths();
 
- ostr.width(OldWidth);
- ostr.fill(cOldFill);
+	ostr.width(OldWidth);
+	ostr.fill(cOldFill);
 
- return ostr;
+	return ostr;
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // input operator
 ////////////////////////////////////////////////////////////////////////////
-std::istream &operator>>(std::istream &istr, CTime &time)
-{
- char szBuffer[12];
+std::istream &operator>>(std::istream &istr, CTime &time) {
+	char szBuffer[12];
 
- {
-  int i = 0;
-  for (; i < (int)sizeof(szBuffer) - 1; i++)
-  {
-   int c = istr.peek();
-   if (c == ' ' || c == '\n' || istr.eof())
-    break;
-   szBuffer[i] = char(c);
-   istr.ignore();
-  }
-  szBuffer[i] = 0;
- }
+	{
+		int i = 0;
+		for (; i < (int)sizeof(szBuffer) - 1; i++) {
+			int c = istr.peek();
+			if (c == ' ' || c == '\n' || istr.eof())
+				break;
+			szBuffer[i] = char(c);
+			istr.ignore();
+		}
+		szBuffer[i] = 0;
+	}
 
- time.Set(szBuffer);
- return istr;
+	time.Set(szBuffer);
+	return istr;
 }

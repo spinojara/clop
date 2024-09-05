@@ -13,43 +13,37 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CDFVarianceAlpha::CDFVarianceAlpha(CRegression &reg, double alpha):
- CDFConfidence(reg),
- alpha(alpha),
- alphaInv(1.0 / alpha)
-{
- SetMinSamples(5);
+CDFVarianceAlpha::CDFVarianceAlpha(CRegression &reg, double alpha) : CDFConfidence(reg), alpha(alpha), alphaInv(1.0 / alpha) {
+	SetMinSamples(5);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // GetOutput
 /////////////////////////////////////////////////////////////////////////////
-double CDFVarianceAlpha::GetOutput(const double *vInput)
-{
- ComputeVariance(vInput);
+double CDFVarianceAlpha::GetOutput(const double *vInput) {
+	ComputeVariance(vInput);
 
- r0 = r - alpha * dev;
- r1 = r + alpha * dev;
+	r0 = r - alpha * dev;
+	r1 = r + alpha * dev;
 
- return CLogistic::Difference(r1, r0) * alphaInv;
+	return CLogistic::Difference(r1, r0) * alphaInv;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Compute gradient
 /////////////////////////////////////////////////////////////////////////////
-void CDFVarianceAlpha::ComputeGradient()
-{
- //
- // Pre-compute some coefficients
- //
- double t0 = CLogistic::Derivative(r0);
- double t1 = CLogistic::Derivative(r1);
- double u = alpha / dev;
+void CDFVarianceAlpha::ComputeGradient() {
+	//
+	// Pre-compute some coefficients
+	//
+	double t0 = CLogistic::Derivative(r0);
+	double t1 = CLogistic::Derivative(r1);
+	double u = alpha / dev;
 
- //
- // Compute gradient
- //
- ComputeZ();
- for (int i = Dimensions; --i >= 0;)
-  vGradient[i] = (t1*(vz[i]+u*vZ[i]) - t0*(vz[i]-u*vZ[i])) * alphaInv;
+	//
+	// Compute gradient
+	//
+	ComputeZ();
+	for (int i = Dimensions; --i >= 0;)
+		vGradient[i] = (t1 * (vz[i] + u * vZ[i]) - t0 * (vz[i] - u * vZ[i])) * alphaInv;
 }

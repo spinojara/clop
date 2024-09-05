@@ -12,16 +12,15 @@
 #ifndef CHTIMER_H
 #define CHTIMER_H
 
-#include "chtime.h"     // CTime
+#include "chtime.h" // CTime
 
 class CChessTimer // timer
 {
- private: //////////////////////////////////////////////////////////////////
-
- public: ///////////////////////////////////////////////////////////////////
-  virtual void Wait(long lMilliSeconds = 0) = 0;
-  virtual CTime GetInterval(void) = 0;
-  virtual ~CChessTimer() {}
+      private: //////////////////////////////////////////////////////////////////
+      public:  ///////////////////////////////////////////////////////////////////
+	virtual void Wait(long lMilliSeconds = 0) = 0;
+	virtual CTime GetInterval(void) = 0;
+	virtual ~CChessTimer() {}
 };
 
 #endif

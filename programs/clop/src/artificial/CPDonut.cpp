@@ -15,24 +15,22 @@
 /////////////////////////////////////////////////////////////////////////////
 // Quadratic strength function
 /////////////////////////////////////////////////////////////////////////////
-double CPDonut::GetStrength(const double v[]) const
-{
- double r2 = 0.0;
+double CPDonut::GetStrength(const double v[]) const {
+	double r2 = 0.0;
 
- for (int i = Dimensions; --i >= 0;)
-  r2 += v[i] * v[i];
+	for (int i = Dimensions; --i >= 0;)
+		r2 += v[i] * v[i];
 
- r2 *= 9.0;
+	r2 *= 9.0;
 
- return 10 * r2 * std::exp(-r2) - 2;
+	return 10 * r2 * std::exp(-r2) - 2;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Optimal Parameters
 /////////////////////////////////////////////////////////////////////////////
-void CPDonut::GetOptimalParameters(double v[]) const
-{
- v[0] = 1.0 / 3.0;
- for (int i = Dimensions; --i > 0;)
-  v[i] = 0.0;
+void CPDonut::GetOptimalParameters(double v[]) const {
+	v[0] = 1.0 / 3.0;
+	for (int i = Dimensions; --i > 0;)
+		v[i] = 0.0;
 }

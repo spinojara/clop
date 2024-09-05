@@ -13,14 +13,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // Compute weighted mean of all samples
 /////////////////////////////////////////////////////////////////////////////
-bool CMESampleMean::MaxParameter(double vMax[]) const
-{
- const double TotalWeight = reg.GetTotalWeight();
- const double *vTotalWeightedSample = reg.GetTotalWeightedSample();
+bool CMESampleMean::MaxParameter(double vMax[]) const {
+	const double TotalWeight = reg.GetTotalWeight();
+	const double *vTotalWeightedSample = reg.GetTotalWeightedSample();
 
- if (TotalWeight > 0.0)
-  for (int i = reg.GetPF().GetDimensions(); --i >= 0;)
-   vMax[i] = vTotalWeightedSample[i] / TotalWeight;
+	if (TotalWeight > 0.0)
+		for (int i = reg.GetPF().GetDimensions(); --i >= 0;)
+			vMax[i] = vTotalWeightedSample[i] / TotalWeight;
 
- return true;
+	return true;
 }

@@ -13,18 +13,12 @@
 
 #include <windows.h>
 
-void mybeep()
-{
- MessageBeep(MB_ICONASTERISK);
-}
+void mybeep() { MessageBeep(MB_ICONASTERISK); }
 
 #else //////////////////////////////////////////////////////////////////////
 
 #include <iostream>
 
-void mybeep()
-{
- (std::cerr << '\7').flush();
-}
+void mybeep() { (std::cerr << '\7').flush(); }
 
 #endif

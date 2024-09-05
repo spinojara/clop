@@ -18,21 +18,21 @@ class CParameter;
 
 class CExperimentSettings // es
 {
- public: ////////////////////////////////////////////////////////////////////
-  std::list<CParameter *> lparam;
-  std::string sScript;
-  std::list<std::string> lsScriptParam;
-  std::string sName;
-  std::list<std::string> lsProcessors;
-  int Replications;
-  double DrawRating;
-  bool fStopOnError;
-  double H;
-  bool fIndependent;
+      public: ////////////////////////////////////////////////////////////////////
+	std::list<CParameter *> lparam;
+	std::string sScript;
+	std::list<std::string> lsScriptParam;
+	std::string sName;
+	std::list<std::string> lsProcessors;
+	int Replications;
+	double DrawRating;
+	bool fStopOnError;
+	double H;
+	bool fIndependent;
 
- public: ////////////////////////////////////////////////////////////////////
-  CExperimentSettings(std::istream &is);
-  ~CExperimentSettings();
+      public: ////////////////////////////////////////////////////////////////////
+	CExperimentSettings(std::istream &is);
+	~CExperimentSettings();
 };
 
 #endif

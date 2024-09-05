@@ -10,9 +10,8 @@
 #include "CLUTestCUI.h"
 #include <iostream>
 
-int main()
-{
- CLUTestCUI lutestcui;
- lutestcui.MainLoop(std::cin, std::cout);
- return 0;
+int main() {
+	CLUTestCUI lutestcui;
+	lutestcui.MainLoop(std::cin, std::cout);
+	return 0;
 }

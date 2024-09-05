@@ -12,28 +12,22 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CDFRatingLCB::CDFRatingLCB(CRegression &reg, double alpha):
- CDFConfidence(reg),
- alpha(alpha)
-{
-}
+CDFRatingLCB::CDFRatingLCB(CRegression &reg, double alpha) : CDFConfidence(reg), alpha(alpha) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Get output
 /////////////////////////////////////////////////////////////////////////////
-double CDFRatingLCB::GetOutput(const double *vInput)
-{
- ComputeVariance(vInput);
- return r - alpha * dev;
+double CDFRatingLCB::GetOutput(const double *vInput) {
+	ComputeVariance(vInput);
+	return r - alpha * dev;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Gradient
 /////////////////////////////////////////////////////////////////////////////
-void CDFRatingLCB::ComputeGradient()
-{
- ComputeZ();
- double u = alpha / dev;
- for (int i = Dimensions; --i >= 0;)
-  vGradient[i] = vz[i] - u * vZ[i];
+void CDFRatingLCB::ComputeGradient() {
+	ComputeZ();
+	double u = alpha / dev;
+	for (int i = Dimensions; --i >= 0;)
+		vGradient[i] = vz[i] - u * vZ[i];
 }

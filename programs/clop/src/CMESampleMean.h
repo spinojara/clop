@@ -15,17 +15,17 @@
 
 class CRegression;
 
-class CMESampleMean: public CMaxEstimator // mesm
+class CMESampleMean : public CMaxEstimator // mesm
 {
- private: ///////////////////////////////////////////////////////////////////
-  CRegression &reg;
+      private: ///////////////////////////////////////////////////////////////////
+	CRegression &reg;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CMESampleMean(CRegression &reg): reg(reg) {}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CMESampleMean(CRegression &reg) : reg(reg) {}
 
-  void ComputeLocalWeights() const override { reg.ComputeLocalWeights(); }
+	void ComputeLocalWeights() const override { reg.ComputeLocalWeights(); }
 
-  bool MaxParameter(double vMax[]) const;
+	bool MaxParameter(double vMax[]) const;
 };
 
 #endif

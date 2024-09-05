@@ -12,40 +12,34 @@
 ////////////////////////////////////////////////////////////////////////////
 // Constructor
 ////////////////////////////////////////////////////////////////////////////
-CBrushCache::CBrushCache() :
- Index(0),
- Creations(0)
-{
- for (int i = CacheSize; --i >= 0;)
- {
-  tclr[i] = 0;
-  thbr[i] = 0;
- }
+CBrushCache::CBrushCache() : Index(0), Creations(0) {
+	for (int i = CacheSize; --i >= 0;) {
+		tclr[i] = 0;
+		thbr[i] = 0;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // Get brush
 ////////////////////////////////////////////////////////////////////////////
-HBRUSH CBrushCache::GetBrush(COLORREF clr)
-{
- for (int i = CacheSize; --i >= 0;)
-  if (tclr[i] == clr)
-   return thbr[i];
+HBRUSH CBrushCache::GetBrush(COLORREF clr) {
+	for (int i = CacheSize; --i >= 0;)
+		if (tclr[i] == clr)
+			return thbr[i];
 
- Index = (Index + 1) % CacheSize;
- Creations++;
- DeleteObject(thbr[Index]);
- thbr[Index] = CreateSolidBrush(clr);
- tclr[Index] = clr;
+	Index = (Index + 1) % CacheSize;
+	Creations++;
+	DeleteObject(thbr[Index]);
+	thbr[Index] = CreateSolidBrush(clr);
+	tclr[Index] = clr;
 
- return thbr[Index];
+	return thbr[Index];
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // Destructor
 ////////////////////////////////////////////////////////////////////////////
-CBrushCache::~CBrushCache()
-{
- for (int i = CacheSize; --i >= 0;)
-  DeleteObject(thbr[i]);
+CBrushCache::~CBrushCache() {
+	for (int i = CacheSize; --i >= 0;)
+		DeleteObject(thbr[i]);
 }

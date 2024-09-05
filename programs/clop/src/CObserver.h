@@ -14,18 +14,18 @@ class CResults;
 
 class CObserver // obs
 {
- protected: /////////////////////////////////////////////////////////////////
-  CResults &results;
+      protected: /////////////////////////////////////////////////////////////////
+	CResults &results;
 
- public: ////////////////////////////////////////////////////////////////////
-  CObserver(CResults &results);
+      public: ////////////////////////////////////////////////////////////////////
+	CObserver(CResults &results);
 
-  virtual void OnReset() {}
-  virtual void OnSample() {}
-  virtual void OnOutcome(int i) {}
-  virtual void OnRefresh() {}
+	virtual void OnReset() {}
+	virtual void OnSample() {}
+	virtual void OnOutcome(int i) {}
+	virtual void OnRefresh() {}
 
-  virtual ~CObserver();
+	virtual ~CObserver();
 };
 
 #endif

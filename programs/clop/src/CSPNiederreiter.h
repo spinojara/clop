@@ -12,13 +12,11 @@
 
 #include "CSPQuasiRandom.h"
 
-class CSPNiederreiter: public CSPQuasiRandom
-{
- public:
-  explicit CSPNiederreiter(int Dimensions): CSPQuasiRandom(Dimensions)
-  {
-   q = gsl_qrng_alloc(gsl_qrng_niederreiter_2, Dimensions);
-  }
+class CSPNiederreiter : public CSPQuasiRandom {
+      public:
+	explicit CSPNiederreiter(int Dimensions) : CSPQuasiRandom(Dimensions) {
+		q = gsl_qrng_alloc(gsl_qrng_niederreiter_2, Dimensions);
+	}
 };
 
 #endif

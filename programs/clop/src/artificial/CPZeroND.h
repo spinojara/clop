@@ -12,17 +12,17 @@
 
 #include "CArtificialProblem.h"
 
-class CPZeroND: public CArtificialProblem // znd
+class CPZeroND : public CArtificialProblem // znd
 {
- private: ///////////////////////////////////////////////////////////////////
-  const int Dimensions;
+      private: ///////////////////////////////////////////////////////////////////
+	const int Dimensions;
 
- public: ////////////////////////////////////////////////////////////////////
-  CPZeroND(int Dimensions): Dimensions(Dimensions) {}
+      public: ////////////////////////////////////////////////////////////////////
+	CPZeroND(int Dimensions) : Dimensions(Dimensions) {}
 
-  double GetStrength(const double v[]) const {return 0.0;}
-  double GetProba(const double *v) const {return 0.0;}
-  int GetDimensions() const {return Dimensions;}
+	double GetStrength(const double v[]) const { return 0.0; }
+	double GetProba(const double *v) const { return 0.0; }
+	int GetDimensions() const { return Dimensions; }
 };
 
 #endif

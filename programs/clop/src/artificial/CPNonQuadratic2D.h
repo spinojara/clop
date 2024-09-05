@@ -12,12 +12,12 @@
 
 #include "CArtificialProblem.h"
 
-class CPNonQuadratic2D: public CArtificialProblem // nq2d
+class CPNonQuadratic2D : public CArtificialProblem // nq2d
 {
- public: ////////////////////////////////////////////////////////////////////
-  double GetStrength(const double v[]) const;
-  void GetOptimalParameters(double v[]) const;
-  int GetDimensions() const {return 2;}
+      public: ////////////////////////////////////////////////////////////////////
+	double GetStrength(const double v[]) const;
+	void GetOptimalParameters(double v[]) const;
+	int GetDimensions() const { return 2; }
 };
 
 #endif

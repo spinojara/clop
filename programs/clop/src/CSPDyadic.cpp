@@ -14,19 +14,16 @@
 /////////////////////////////////////////////////////////////////////////////
 // Next Sample
 /////////////////////////////////////////////////////////////////////////////
-const double *CSPDyadic::NextSample(int i)
-{
- std::fill(v.begin(), v.end(), -1.0);
+const double *CSPDyadic::NextSample(int i) {
+	std::fill(v.begin(), v.end(), -1.0);
 
- for (double Mul = 1.0; i; Mul *= 0.5)
- {
-  int x = 0;
-  for (int k = int(v.size()); --k >= 0; i >>= 1)
-  {
-   v[k] += ((i & 1) ^ x) * Mul;
-   x = i & 1;
-  }
- }
+	for (double Mul = 1.0; i; Mul *= 0.5) {
+		int x = 0;
+		for (int k = int(v.size()); --k >= 0; i >>= 1) {
+			v[k] += ((i & 1) ^ x) * Mul;
+			x = i & 1;
+		}
+	}
 
- return &v[0];
+	return &v[0];
 }

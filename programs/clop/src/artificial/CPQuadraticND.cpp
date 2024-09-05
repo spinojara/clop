@@ -12,14 +12,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // Quadratic strength function
 /////////////////////////////////////////////////////////////////////////////
-double CPQuadraticND::GetStrength(const double v[]) const
-{
- double Sum = 0;
- for (int i = Dimensions; --i >= 0;)
- {
-  double d = v[i] + 0.2;
-  Sum -= d * d * 0.5;
- }
- 
- return 0.5 + Sum;
+double CPQuadraticND::GetStrength(const double v[]) const {
+	double Sum = 0;
+	for (int i = Dimensions; --i >= 0;) {
+		double d = v[i] + 0.2;
+		Sum -= d * d * 0.5;
+	}
+
+	return 0.5 + Sum;
 }

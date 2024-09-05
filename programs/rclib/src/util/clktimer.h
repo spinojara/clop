@@ -16,14 +16,14 @@
 
 class CClockTimer : public CChessTimer // clkt
 {
- private: //////////////////////////////////////////////////////////////////
-  long lPrevious;
+      private: //////////////////////////////////////////////////////////////////
+	long lPrevious;
 
- public: ///////////////////////////////////////////////////////////////////
-  CClockTimer();
-  virtual void Wait(long lMilliSeconds = 0);
-  virtual void WaitInterval(long lMilliSeconds = 0);
-  virtual CTime GetInterval();
+      public: ///////////////////////////////////////////////////////////////////
+	CClockTimer();
+	virtual void Wait(long lMilliSeconds = 0);
+	virtual void WaitInterval(long lMilliSeconds = 0);
+	virtual CTime GetInterval();
 };
 
 #endif

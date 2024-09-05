@@ -18,78 +18,61 @@ class CDiscretizedLine;
 
 class CContour // contour
 {
- private: /////////////////////////////////////////////////////////////////
-  const CSurface &surf;
+      private: /////////////////////////////////////////////////////////////////
+	const CSurface &surf;
 
-  double xMin;
-  double xMax;
-  double yMin;
-  double yMax;
+	double xMin;
+	double xMax;
+	double yMin;
+	double yMax;
 
-  int GridWidth;
-  int GridHeight;
-  int GridSize;
-  int tDirection[4];
+	int GridWidth;
+	int GridHeight;
+	int GridSize;
+	int tDirection[4];
 
-  std::vector<int> vGrid;
-  std::vector<int> vBorderType;
+	std::vector<int> vGrid;
+	std::vector<int> vBorderType;
 
-  double Level;
-  int Components;
-  int NegativeComponents;
-  int BorderTypes;
-  std::vector<int> vInside;
-  std::vector<int> vOutside;
+	double Level;
+	int Components;
+	int NegativeComponents;
+	int BorderTypes;
+	std::vector<int> vInside;
+	std::vector<int> vOutside;
 
-  double GetX(int i) const
-  {
-   return xMin + (xMax - xMin) * double(i) / double(GridWidth);
-  }
+	double GetX(int i) const { return xMin + (xMax - xMin) * double(i) / double(GridWidth); }
 
-  double GetY(int i) const
-  {
-   return yMin + (yMax - yMin) * double(i) / double(GridHeight);
-  }
+	double GetY(int i) const { return yMin + (yMax - yMin) * double(i) / double(GridHeight); }
 
-  int Index(int i, int j) const {return (j + 1) * (GridWidth + 3) + i + 1;}
+	int Index(int i, int j) const { return (j + 1) * (GridWidth + 3) + i + 1; }
 
-  void MarkComponent(int i, int v);
-  int PlotRight(int i, int Dir, double &x, double &y) const;
+	void MarkComponent(int i, int v);
+	int PlotRight(int i, int Dir, double &x, double &y) const;
 
-  double GetZ(double x, double y) const {return surf.GetValue(x, y) - Level;}
+	double GetZ(double x, double y) const { return surf.GetValue(x, y) - Level; }
 
-  void RefinePoint(double x0,
-                   double y0,
-                   double z0,
-                   double x1,
-                   double y1,
-                   double z1,
-                   double &x,
-                   double &y) const;
+	void RefinePoint(double x0, double y0, double z0, double x1, double y1, double z1, double &x, double &y) const;
 
-  void RefineLine(CDiscretizedLine &dl) const;
+	void RefineLine(CDiscretizedLine &dl) const;
 
- public: //////////////////////////////////////////////////////////////////
-  explicit CContour(const CSurface &surfInit);
+      public: //////////////////////////////////////////////////////////////////
+	explicit CContour(const CSurface &surfInit);
 
-  const CSurface &GetSurface() const {return surf;}
+	const CSurface &GetSurface() const { return surf; }
 
-  double GetXMin() const {return xMin;}
-  double GetXMax() const {return xMax;}
-  double GetYMin() const {return yMin;}
-  double GetYMax() const {return yMax;}
+	double GetXMin() const { return xMin; }
+	double GetXMax() const { return xMax; }
+	double GetYMin() const { return yMin; }
+	double GetYMax() const { return yMax; }
 
-  int GetComponents() const;
-  void PlotComponent(int Component,
-                     std::ostream &out,
-                     int fBorder,
-                     double dMax,
-                     double Scale);
-  void PlotLines(std::ostream &out, double dMax, double Scale);
+	int GetComponents() const;
+	void PlotComponent(int Component, std::ostream &out, int fBorder, double dMax, double Scale);
+	void PlotLines(std::ostream &out, double dMax, double Scale);
 
-  void SetBounds(double x, double X, double y, double Y);
-  void SetGridSize(int Width, int Height);
-  void SetLevel(double NewLevel);
+	void SetBounds(double x, double X, double y, double Y);
+	void SetGridSize(int Width, int Height);
+	void SetLevel(double NewLevel);
 };
 
 #endif

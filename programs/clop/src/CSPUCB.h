@@ -16,25 +16,21 @@
 
 #include <vector>
 
-class CSPUCB: public CSamplingPolicy // ucb
+class CSPUCB : public CSamplingPolicy // ucb
 {
- private: ////////////////////////////////////////////////////////////////////
-  CRegression &reg;
-  const double alpha;
+      private: ////////////////////////////////////////////////////////////////////
+	CRegression &reg;
+	const double alpha;
 
-  CRandom<unsigned> rnd;
-  std::vector<double> vSample;
+	CRandom<unsigned> rnd;
+	std::vector<double> vSample;
 
- public: ////////////////////////////////////////////////////////////////////
-  CSPUCB(CRegression &reg, double alpha):
-   reg(reg),
-   alpha(alpha),
-   vSample(reg.GetPF().GetDimensions())
-  {}
+      public: ////////////////////////////////////////////////////////////////////
+	CSPUCB(CRegression &reg, double alpha) : reg(reg), alpha(alpha), vSample(reg.GetPF().GetDimensions()) {}
 
-  void Seed(unsigned n) {rnd.Seed(n);}
+	void Seed(unsigned n) { rnd.Seed(n); }
 
-  const double *NextSample(int i);
+	const double *NextSample(int i);
 };
 
 #endif

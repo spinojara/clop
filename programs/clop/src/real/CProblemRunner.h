@@ -18,40 +18,37 @@
 
 class CRealProblem;
 
-class CProblemRunner: public QObject
-{
- Q_OBJECT
+class CProblemRunner : public QObject {
+	Q_OBJECT
 
- private: ///////////////////////////////////////////////////////////////////
-  const int id;
-  const CRealProblem &problem;
-  const std::string &sProcessor;
-  std::string sError;
+      private: ///////////////////////////////////////////////////////////////////
+	const int id;
+	const CRealProblem &problem;
+	const std::string &sProcessor;
+	std::string sError;
 
-  int CurrentSeed;
-  QProcess proc;
-  bool fError;
+	int CurrentSeed;
+	QProcess proc;
+	bool fError;
 
- private slots: /////////////////////////////////////////////////////////////
-  void OnError(QProcess::ProcessError);
-  void OnFinished(int, QProcess::ExitStatus);
+      private slots: /////////////////////////////////////////////////////////////
+	void OnError(QProcess::ProcessError);
+	void OnFinished(int, QProcess::ExitStatus);
 
- public: ////////////////////////////////////////////////////////////////////
-  CProblemRunner(int id,
-                 const CRealProblem &problem,
-                 const std::string &sProcessor);
+      public: ////////////////////////////////////////////////////////////////////
+	CProblemRunner(int id, const CRealProblem &problem, const std::string &sProcessor);
 
-  void Run(int Seed, const double v[]);
-  void Wait() {proc.waitForFinished(-1);}
-  const std::string &GetProcessorName() const {return sProcessor;}
-  const std::string &GetError() const {return sError;}
+	void Run(int Seed, const double v[]);
+	void Wait() { proc.waitForFinished(-1); }
+	const std::string &GetProcessorName() const { return sProcessor; }
+	const std::string &GetError() const { return sError; }
 
- signals: ///////////////////////////////////////////////////////////////////
-  void Outcome(int id, int Seed, COutcome outcome);
-  void Error(int id, int Seed);
+      signals: ///////////////////////////////////////////////////////////////////
+	void Outcome(int id, int Seed, COutcome outcome);
+	void Error(int id, int Seed);
 
- public slots: //////////////////////////////////////////////////////////////
-  void Kill() {proc.kill();}
+      public slots: //////////////////////////////////////////////////////////////
+	void Kill() { proc.kill(); }
 };
 
 #endif

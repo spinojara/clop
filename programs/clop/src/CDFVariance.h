@@ -15,37 +15,37 @@
 
 class CRegression;
 
-class CDFVariance: public CDiffFunction // dfvar
+class CDFVariance : public CDiffFunction // dfvar
 {
- protected: /////////////////////////////////////////////////////////////////
-  CRegression &reg;
-  const int Dimensions;
-  const int Parameters;
+      protected: /////////////////////////////////////////////////////////////////
+	CRegression &reg;
+	const int Dimensions;
+	const int Parameters;
 
-  const double *pvx;
-  std::vector<double> vGradient;
+	const double *pvx;
+	std::vector<double> vGradient;
 
-  void CholeskySolve(std::vector<double> &v);
+	void CholeskySolve(std::vector<double> &v);
 
- private: ///////////////////////////////////////////////////////////////////
-  std::vector<double> vH; // dummy: this is not computed
-  int MinSamples;
+      private:			///////////////////////////////////////////////////////////////////
+	std::vector<double> vH; // dummy: this is not computed
+	int MinSamples;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CDFVariance(CRegression &reg);
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CDFVariance(CRegression &reg);
 
-  double GetOutput(const double *v) {return 0.0;}
+	double GetOutput(const double *v) { return 0.0; }
 
-  void ComputeGradient();
-  const std::vector<double> &GetGradient() {return vGradient;}
-  const std::vector<double> &GetHessian() {return vH;}
-  double Normalize(double x) const;
+	void ComputeGradient();
+	const std::vector<double> &GetGradient() { return vGradient; }
+	const std::vector<double> &GetHessian() { return vH; }
+	double Normalize(double x) const;
 
-  virtual void SelectAtRandom(CRandom<unsigned> &rnd) {}
-  virtual double GetVariance() const {return 0;}
+	virtual void SelectAtRandom(CRandom<unsigned> &rnd) {}
+	virtual double GetVariance() const { return 0; }
 
-  int GetMinSamples() const {return MinSamples;}
-  void SetMinSamples(int n) {MinSamples = n;}
+	int GetMinSamples() const { return MinSamples; }
+	void SetMinSamples(int n) { MinSamples = n; }
 };
 
 #endif

@@ -13,21 +13,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // Add a parameter
 /////////////////////////////////////////////////////////////////////////////
-void CParameterCollection::Add(const CParameter &param)
-{
- vpparam.push_back(&param);
- vTranslation.push_back(0.0);
+void CParameterCollection::Add(const CParameter &param) {
+	vpparam.push_back(&param);
+	vTranslation.push_back(0.0);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Translate a vector
 /////////////////////////////////////////////////////////////////////////////
-const double *CParameterCollection::Translate(const double *v) const
-{
- for (int i = GetSize(); --i >= 0;)
- {
-  const CParameter &param = GetParam(i);
-  vTranslation[i] = param.TransformToQLR(param.TransformFromQLR(v[i]));
- }
- return &vTranslation[0];
+const double *CParameterCollection::Translate(const double *v) const {
+	for (int i = GetSize(); --i >= 0;) {
+		const CParameter &param = GetParam(i);
+		vTranslation[i] = param.TransformToQLR(param.TransformFromQLR(v[i]));
+	}
+	return &vTranslation[0];
 }

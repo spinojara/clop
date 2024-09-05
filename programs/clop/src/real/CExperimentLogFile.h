@@ -14,19 +14,18 @@
 #include <fstream>
 #include <string>
 
-class CExperimentLogFile: public QObject
-{
- Q_OBJECT
+class CExperimentLogFile : public QObject {
+	Q_OBJECT
 
- private: ///////////////////////////////////////////////////////////////////
-  std::ofstream ofs;
-  void WriteMessage(const std::string &sMessage);
+      private: ///////////////////////////////////////////////////////////////////
+	std::ofstream ofs;
+	void WriteMessage(const std::string &sMessage);
 
- public: ////////////////////////////////////////////////////////////////////
-  CExperimentLogFile(const char *szFileName);
+      public: ////////////////////////////////////////////////////////////////////
+	CExperimentLogFile(const char *szFileName);
 
- public slots: //////////////////////////////////////////////////////////////
-  void OnMessage(std::string sMessage);
+      public slots: //////////////////////////////////////////////////////////////
+	void OnMessage(std::string sMessage);
 };
 
 #endif // CExperimentLogFile_Declared

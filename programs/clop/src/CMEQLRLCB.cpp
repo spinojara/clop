@@ -14,23 +14,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CMEQLRLCB::CMEQLRLCB(CRegression &reg, double alpha):
- reg(reg),
- alpha(alpha)
-{
-}
+CMEQLRLCB::CMEQLRLCB(CRegression &reg, double alpha) : reg(reg), alpha(alpha) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Find the maximum of the lower confidence bound
 /////////////////////////////////////////////////////////////////////////////
-bool CMEQLRLCB::MaxParameter(double vMax[]) const
-{
- if (!reg.GetPF().GetMax(&reg.MAP()[0], &vMax[0]))
-  for (int i = reg.GetPF().GetDimensions(); --i >= 0;)
-   vMax[i] = 0.0;
+bool CMEQLRLCB::MaxParameter(double vMax[]) const {
+	if (!reg.GetPF().GetMax(&reg.MAP()[0], &vMax[0]))
+		for (int i = reg.GetPF().GetDimensions(); --i >= 0;)
+			vMax[i] = 0.0;
 
- CDFRatingLCB dfrlcb(reg, alpha);
- dfrlcb.CG(vMax);
+	CDFRatingLCB dfrlcb(reg, alpha);
+	dfrlcb.CG(vMax);
 
- return true;
+	return true;
 }

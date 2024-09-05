@@ -14,14 +14,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // Output operator for matrices
 /////////////////////////////////////////////////////////////////////////////
-std::ostream &operator<<(std::ostream &out, const CMatrix &m)
-{
- for (int i = 0; i < m.GetRows(); i++)
- {
-  for (int j = 0; j < m.GetColumns(); j++)
-   out << std::setw(12) << m.GetElement(i, j) << ' ';
-  out << '\n';
- }
+std::ostream &operator<<(std::ostream &out, const CMatrix &m) {
+	for (int i = 0; i < m.GetRows(); i++) {
+		for (int j = 0; j < m.GetColumns(); j++)
+			out << std::setw(12) << m.GetElement(i, j) << ' ';
+		out << '\n';
+	}
 
- return out;
+	return out;
 }

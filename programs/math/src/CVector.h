@@ -12,31 +12,31 @@
 
 class CVector // v
 {
- private: /////////////////////////////////////////////////////////////////
-  double *pd;
-  int Size;
+      private: /////////////////////////////////////////////////////////////////
+	double *pd;
+	int Size;
 
- public: //////////////////////////////////////////////////////////////////
-  CVector(int SizeInit = 0);
-  CVector(const CVector &v);
-  CVector &operator=(const CVector &v);   
+      public: //////////////////////////////////////////////////////////////////
+	CVector(int SizeInit = 0);
+	CVector(const CVector &v);
+	CVector &operator=(const CVector &v);
 
-  int GetSize() const {return Size;}
-  void SetSize(int NewSize);
+	int GetSize() const { return Size; }
+	void SetSize(int NewSize);
 
-  operator double * () {return pd;}
-  operator const double * () const {return pd;}
+	operator double *() { return pd; }
+	operator const double *() const { return pd; }
 
-  double operator[](int i) const {return pd[i];}
-  double &operator[](int i) {return pd[i];}
+	double operator[](int i) const { return pd[i]; }
+	double &operator[](int i) { return pd[i]; }
 
-  void Zero();
-  void Scale(double x);
-  void Add(const double *pdp);
-  void AddScaled(const double *pdp, double x);
-  void Set(const double *px);
+	void Zero();
+	void Scale(double x);
+	void Add(const double *pdp);
+	void AddScaled(const double *pdp, double x);
+	void Set(const double *px);
 
-  ~CVector();
+	~CVector();
 };
 
 #endif

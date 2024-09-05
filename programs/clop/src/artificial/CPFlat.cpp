@@ -14,23 +14,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // Strength
 /////////////////////////////////////////////////////////////////////////////
-double CPFlat::GetStrength(const double v[]) const
-{
- double Result = 0; 
+double CPFlat::GetStrength(const double v[]) const {
+	double Result = 0;
 
- for (int i = Dimensions; --i >= 0;)
- {
-  const double d = v[i] + 0.6;
-  Result += 0.2 / (1.0 + 6 * d * d + d * d * d);
- }
+	for (int i = Dimensions; --i >= 0;) {
+		const double d = v[i] + 0.6;
+		Result += 0.2 / (1.0 + 6 * d * d + d * d * d);
+	}
 
- return Result;
+	return Result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Optimal Parameters
 /////////////////////////////////////////////////////////////////////////////
-void CPFlat::GetOptimalParameters(double v[]) const
-{
- std::fill(v, v + Dimensions, -0.6);
-}
+void CPFlat::GetOptimalParameters(double v[]) const { std::fill(v, v + Dimensions, -0.6); }

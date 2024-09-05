@@ -22,35 +22,33 @@
 /////////////////////////////////////////////////////////////////////////////
 // main
 /////////////////////////////////////////////////////////////////////////////
-int main()
-{
- CParameterCollection paramcol;
+int main() {
+	CParameterCollection paramcol;
 
- CLinearParameter param1("p1", 0, 1.0);
+	CLinearParameter param1("p1", 0, 1.0);
 
- paramcol.Add(param1);
+	paramcol.Add(param1);
 
- CRealProblem problem("c:\\Python26\\python.exe DummyScript.py", paramcol);
+	CRealProblem problem("c:\\Python26\\python.exe DummyScript.py", paramcol);
 
- CResults results(paramcol.GetSize());
+	CResults results(paramcol.GetSize());
 
-// CPFQuadratic pfq(problem.GetDimensions());
-// CRegression reg(results, pfq);
+	// CPFQuadratic pfq(problem.GetDimensions());
+	// CRegression reg(results, pfq);
 
- CBAST sp(results);
- CMaxEstimator &me = sp;
+	CBAST sp(results);
+	CMaxEstimator &me = sp;
 
- CRealExperiment rexp(problem, sp, results, "DummyExperiment");
- CRealObserver ro(results, paramcol, me);
+	CRealExperiment rexp(problem, sp, results, "DummyExperiment");
+	CRealObserver ro(results, paramcol, me);
 
- for (int i = 10; --i >= 0;)
- {
-  std::ostringstream oss;
-  oss << "processor-" << i;
-  rexp.AddProcessor(oss.str());
- }
+	for (int i = 10; --i >= 0;) {
+		std::ostringstream oss;
+		oss << "processor-" << i;
+		rexp.AddProcessor(oss.str());
+	}
 
- rexp.Run(100);
+	rexp.Run(100);
 
- return 0;
+	return 0;
 }

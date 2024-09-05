@@ -12,11 +12,11 @@
 
 class CMaxEstimator // me
 {
- public: ////////////////////////////////////////////////////////////////////
-  virtual void Reserve(unsigned n) {}
-  virtual bool MaxParameter(double vMax[]) const {return false;}
-  virtual void ComputeLocalWeights() const {}
-  virtual ~CMaxEstimator() {}
+      public: ////////////////////////////////////////////////////////////////////
+	virtual void Reserve(unsigned n) {}
+	virtual bool MaxParameter(double vMax[]) const { return false; }
+	virtual void ComputeLocalWeights() const {}
+	virtual ~CMaxEstimator() {}
 };
 
 #endif

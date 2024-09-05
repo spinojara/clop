@@ -17,21 +17,19 @@
 
 class CRegression;
 
-class CSPWeight: public CSamplingPolicy // spw
+class CSPWeight : public CSamplingPolicy // spw
 {
- private: ////////////////////////////////////////////////////////////////////
-  std::vector<double> vResult; 
-  const CRegression &reg;
-  const int ReplicationThreshold;
-  const int nMCMC;
-  CRandom<unsigned> rnd;
+      private: ////////////////////////////////////////////////////////////////////
+	std::vector<double> vResult;
+	const CRegression &reg;
+	const int ReplicationThreshold;
+	const int nMCMC;
+	CRandom<unsigned> rnd;
 
- public: ////////////////////////////////////////////////////////////////////
-  CSPWeight(const CRegression &reg,
-            int ReplicationThreshold = 0,
-            int nMCMC = 100);
-  void Seed(unsigned n) {rnd.Seed(n);}
-  const double *NextSample(int i);
+      public: ////////////////////////////////////////////////////////////////////
+	CSPWeight(const CRegression &reg, int ReplicationThreshold = 0, int nMCMC = 100);
+	void Seed(unsigned n) { rnd.Seed(n); }
+	const double *NextSample(int i);
 };
 
 #endif

@@ -12,19 +12,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CSPUniform::CSPUniform(int Dimensions, double Min, double Max):
- v(Dimensions),
- Min(Min),
- Max(Max)
-{
-}
+CSPUniform::CSPUniform(int Dimensions, double Min, double Max) : v(Dimensions), Min(Min), Max(Max) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Draw a sample at random
 /////////////////////////////////////////////////////////////////////////////
-const double *CSPUniform::NextSample(int i)
-{
- for (int j = int(v.size()); --j >= 0;)
-  v[j] = Min + (Max - Min) * rnd.NextDouble();
- return &v[0];
+const double *CSPUniform::NextSample(int i) {
+	for (int j = int(v.size()); --j >= 0;)
+		v[j] = Min + (Max - Min) * rnd.NextDouble();
+	return &v[0];
 }

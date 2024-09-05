@@ -12,27 +12,17 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CIntegerParameter::CIntegerParameter(const std::string &s,
-                                     int Min,
-                                     int Max):
- CParameter(s),
- Min(Min),
- Max(Max)
-{}
+CIntegerParameter::CIntegerParameter(const std::string &s, int Min, int Max) : CParameter(s), Min(Min), Max(Max) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Transform x to the [-1, 1] range
 /////////////////////////////////////////////////////////////////////////////
-double CIntegerParameter::TransformToQLR(double x) const
-{
- return -1.0 + 2.0 * (x - Min + 0.5) / (Max - Min + 1.0);
-}
+double CIntegerParameter::TransformToQLR(double x) const { return -1.0 + 2.0 * (x - Min + 0.5) / (Max - Min + 1.0); }
 
 /////////////////////////////////////////////////////////////////////////////
 // Transform x to the [Min, Max] range
 /////////////////////////////////////////////////////////////////////////////
-double CIntegerParameter::TransformFromQLR(double x) const
-{
- int i = Min + int((Max - Min + 1) * (x + 1.0) * 0.5);
- return i;
+double CIntegerParameter::TransformFromQLR(double x) const {
+	int i = Min + int((Max - Min + 1) * (x + 1.0) * 0.5);
+	return i;
 }

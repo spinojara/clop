@@ -16,16 +16,16 @@
 
 class CRegression;
 
-class CSPCOptimalMAP: public CSamplingPolicy // coptmap
+class CSPCOptimalMAP : public CSamplingPolicy // coptmap
 {
- private: ////////////////////////////////////////////////////////////////////
-  CRegression &reg;
-  std::vector<double> v;
+      private: ////////////////////////////////////////////////////////////////////
+	CRegression &reg;
+	std::vector<double> v;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CSPCOptimalMAP(CRegression &reg);
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CSPCOptimalMAP(CRegression &reg);
 
-  const double *NextSample(int i);
+	const double *NextSample(int i);
 };
 
 #endif

@@ -14,21 +14,21 @@
 
 class CBrushCache // brc
 {
- private: //////////////////////////////////////////////////////////////////
-  enum {CacheSize = 10};
+      private: //////////////////////////////////////////////////////////////////
+	enum { CacheSize = 10 };
 
-  HBRUSH thbr[CacheSize];
-  COLORREF tclr[CacheSize];
-  int Index;
+	HBRUSH thbr[CacheSize];
+	COLORREF tclr[CacheSize];
+	int Index;
 
-  int Creations;
+	int Creations;
 
- public: ///////////////////////////////////////////////////////////////////
-  CBrushCache();
-  int GetCreations() const {return Creations;}
-  void ResetCreations() {Creations = 0;}
-  HBRUSH GetBrush(COLORREF clr);
-  ~CBrushCache();
+      public: ///////////////////////////////////////////////////////////////////
+	CBrushCache();
+	int GetCreations() const { return Creations; }
+	void ResetCreations() { Creations = 0; }
+	HBRUSH GetBrush(COLORREF clr);
+	~CBrushCache();
 };
 
 #endif

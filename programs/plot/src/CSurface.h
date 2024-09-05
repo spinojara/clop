@@ -12,25 +12,20 @@
 
 class CSurface // surf
 {
- private: /////////////////////////////////////////////////////////////////
-  const int fReliableGradient;
+      private: /////////////////////////////////////////////////////////////////
+	const int fReliableGradient;
 
- public: //////////////////////////////////////////////////////////////////
-  explicit CSurface(int f = 1) : fReliableGradient(f) {}
+      public: //////////////////////////////////////////////////////////////////
+	explicit CSurface(int f = 1) : fReliableGradient(f) {}
 
-  int HasReliableGradient() const {return fReliableGradient;}
-  virtual double GetValue(double x, double y) const = 0;
-  virtual void GetValueAndGradient(double x,
-                                   double y,
-                                   double &z,
-                                   double &gx,
-                                   double &gy) const
-  {
-   z = GetValue(x, y);
-   gx = gy = 0;
-  }
+	int HasReliableGradient() const { return fReliableGradient; }
+	virtual double GetValue(double x, double y) const = 0;
+	virtual void GetValueAndGradient(double x, double y, double &z, double &gx, double &gy) const {
+		z = GetValue(x, y);
+		gx = gy = 0;
+	}
 
-  virtual ~CSurface() {}
+	virtual ~CSurface() {}
 };
 
 #endif

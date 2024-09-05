@@ -14,28 +14,23 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CSPCOptimalMAP::CSPCOptimalMAP(CRegression &reg):
- reg(reg),
- v(1)
-{
-}
+CSPCOptimalMAP::CSPCOptimalMAP(CRegression &reg) : reg(reg), v(1) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Get Sample
 /////////////////////////////////////////////////////////////////////////////
-const double *CSPCOptimalMAP::NextSample(int i)
-{
- CSPCOptimal copt(reg.MAP());
+const double *CSPCOptimalMAP::NextSample(int i) {
+	CSPCOptimal copt(reg.MAP());
 
- if (reg.GetSamples() & 1)
-  v[0] = copt.GetMin();
- else
-  v[0] = copt.GetMax();
+	if (reg.GetSamples() & 1)
+		v[0] = copt.GetMin();
+	else
+		v[0] = copt.GetMax();
 
- if (v[0] < -1.0)
-  v[0] = -1.0;
- else if (v[0] > 1.0)
-  v[0] = 1.0;
+	if (v[0] < -1.0)
+		v[0] = -1.0;
+	else if (v[0] > 1.0)
+		v[0] = 1.0;
 
- return &v[0];
+	return &v[0];
 }

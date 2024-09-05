@@ -18,30 +18,27 @@
 
 class CJustifiedText;
 
-CJustifiedText& operator<<(CJustifiedText &jt, const std::string &s);
-CJustifiedText& operator<<(CJustifiedText &jt, const char *psz);
-CJustifiedText& operator<<(CJustifiedText &jt, int i);
+CJustifiedText &operator<<(CJustifiedText &jt, const std::string &s);
+CJustifiedText &operator<<(CJustifiedText &jt, const char *psz);
+CJustifiedText &operator<<(CJustifiedText &jt, int i);
 
 class CJustifiedText // jt
 {
- friend
-  CJustifiedText& operator<<(CJustifiedText &jt, const char *psz);
+	friend CJustifiedText &operator<<(CJustifiedText &jt, const char *psz);
 
- private: //////////////////////////////////////////////////////////////////
-  enum {MaxTextLine = 2048};
+      private: //////////////////////////////////////////////////////////////////
+	enum { MaxTextLine = 2048 };
 
-  const int LineLength;
-  const int Indent;
-  std::ostream *postr;
-  char szBuffer[MaxTextLine];
-  int Size;
+	const int LineLength;
+	const int Indent;
+	std::ostream *postr;
+	char szBuffer[MaxTextLine];
+	int Size;
 
- public: ///////////////////////////////////////////////////////////////////
-  explicit CJustifiedText(std::ostream &ostr,
-                          int LineLengthInit = MaxTextLine,
-                          int IndentInit = 0);
-  ~CJustifiedText() {Flush();};
-  void Flush(void);
+      public: ///////////////////////////////////////////////////////////////////
+	explicit CJustifiedText(std::ostream &ostr, int LineLengthInit = MaxTextLine, int IndentInit = 0);
+	~CJustifiedText() { Flush(); };
+	void Flush(void);
 };
 
 #endif

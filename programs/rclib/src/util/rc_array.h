@@ -4,27 +4,24 @@
 
 #include <cstddef>
 
-template<typename T, std::size_t n> class rc_array
-{
- private:
-  T t[n];
+template <typename T, std::size_t n> class rc_array {
+      private:
+	T t[n];
 
- public:
-  T& operator[](std::size_t i)
-  {
+      public:
+	T &operator[](std::size_t i) {
 #ifdef BOUNDS_CHECK
-   FATAL(i >= n);
+		FATAL(i >= n);
 #endif
-   return t[i];
-  }
+		return t[i];
+	}
 
-  const T& operator[](std::size_t i) const
-  {
+	const T &operator[](std::size_t i) const {
 #ifdef BOUNDS_CHECK
-   FATAL(i >= n);
+		FATAL(i >= n);
 #endif
-   return t[i];
-  }
+		return t[i];
+	}
 
-  std::size_t size() const {return n;}
+	std::size_t size() const { return n; }
 };

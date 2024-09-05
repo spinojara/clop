@@ -12,24 +12,17 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CExperimentLogFile::CExperimentLogFile(const char *szFileName):
- ofs(szFileName, std::ios_base::out | std::ios_base::app)
-{
-}
+CExperimentLogFile::CExperimentLogFile(const char *szFileName) : ofs(szFileName, std::ios_base::out | std::ios_base::app) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Message
 /////////////////////////////////////////////////////////////////////////////
-void CExperimentLogFile::WriteMessage(const std::string &sMessage)
-{
- ofs << sMessage << '\n';
- ofs.flush();
+void CExperimentLogFile::WriteMessage(const std::string &sMessage) {
+	ofs << sMessage << '\n';
+	ofs.flush();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Message event
 /////////////////////////////////////////////////////////////////////////////
-void CExperimentLogFile::OnMessage(std::string sMessage)
-{
- WriteMessage(sMessage);
-}
+void CExperimentLogFile::OnMessage(std::string sMessage) { WriteMessage(sMessage); }

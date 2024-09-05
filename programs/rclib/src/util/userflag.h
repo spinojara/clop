@@ -21,19 +21,19 @@
 
 class CUserFlag // flag
 {
- private: //////////////////////////////////////////////////////////////////
-  static std::vector<int> vState;
-  static void CDECL InterruptSignalHandler(int sig);
+      private: //////////////////////////////////////////////////////////////////
+	static std::vector<int> vState;
+	static void CDECL InterruptSignalHandler(int sig);
 
-  const size_t Index;
+	const size_t Index;
 
- public: ///////////////////////////////////////////////////////////////////
-  CUserFlag();
-  int IsSet() const;
-  void Reset();
-  void Set();
-  void DeActivate();
-  void Activate();
+      public: ///////////////////////////////////////////////////////////////////
+	CUserFlag();
+	int IsSet() const;
+	void Reset();
+	void Set();
+	void DeActivate();
+	void Activate();
 };
 
 #endif

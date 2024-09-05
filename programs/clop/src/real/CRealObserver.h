@@ -14,22 +14,17 @@
 class CParameterCollection;
 class CMaxEstimator;
 
-class CRealObserver: public CObserver // robs
+class CRealObserver : public CObserver // robs
 {
- private: ///////////////////////////////////////////////////////////////////
-  const CParameterCollection &paramcol;
-  const CMaxEstimator &me;
+      private: ///////////////////////////////////////////////////////////////////
+	const CParameterCollection &paramcol;
+	const CMaxEstimator &me;
 
- public: ////////////////////////////////////////////////////////////////////
-  CRealObserver(CResults &results,
-                const CParameterCollection &paramcol,
-                const CMaxEstimator &me):
-   CObserver(results),
-   paramcol(paramcol),
-   me(me)
-  {}
+      public: ////////////////////////////////////////////////////////////////////
+	CRealObserver(CResults &results, const CParameterCollection &paramcol, const CMaxEstimator &me)
+	    : CObserver(results), paramcol(paramcol), me(me) {}
 
-  void OnOutcome(int i);
+	void OnOutcome(int i);
 };
 
 #endif

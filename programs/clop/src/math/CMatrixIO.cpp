@@ -15,13 +15,11 @@
 /////////////////////////////////////////////////////////////////////////////
 // Dump a matrix
 /////////////////////////////////////////////////////////////////////////////
-void CMatrixIO::Dump(std::ostream &out)
-{
- for (int i = 0; i < Size; i++)
- {
-  for (int j = 0; j < Size; j++)
-   out << std::setw(12) << GetValue(i, j) << ' ';
-  out << '\n';
- }
- out << '\n';
+void CMatrixIO::Dump(std::ostream &out) {
+	for (int i = 0; i < Size; i++) {
+		for (int j = 0; j < Size; j++)
+			out << std::setw(12) << GetValue(i, j) << ' ';
+		out << '\n';
+	}
+	out << '\n';
 }

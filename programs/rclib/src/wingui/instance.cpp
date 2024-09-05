@@ -3,12 +3,10 @@
 
 #include "instance.h"
 
-HINSTANCE GetInstance()
-{
+HINSTANCE GetInstance() {
 #ifdef NOMPROGRAMME
- return GetModuleHandle(NOMPROGRAMME);
+	return GetModuleHandle(NOMPROGRAMME);
 #else
- return GetModuleHandle(0);
+	return GetModuleHandle(0);
 #endif
 }
-

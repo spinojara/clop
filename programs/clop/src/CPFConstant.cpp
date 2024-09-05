@@ -12,36 +12,26 @@
 /////////////////////////////////////////////////////////////////////////////
 // GetValue
 /////////////////////////////////////////////////////////////////////////////
-double CPFConstant::GetValue(const double *vParam, const double *vx) const
-{
- return vParam[0];
-}
+double CPFConstant::GetValue(const double *vParam, const double *vx) const { return vParam[0]; }
 
 /////////////////////////////////////////////////////////////////////////////
 // GetMax
 /////////////////////////////////////////////////////////////////////////////
-bool CPFConstant::GetMax(const double *vParam, double *vx) const
-{
- for (int i = Dimensions; --i >= 0;)
-  vx[i] = 0.0;
- return true;
+bool CPFConstant::GetMax(const double *vParam, double *vx) const {
+	for (int i = Dimensions; --i >= 0;)
+		vx[i] = 0.0;
+	return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // GetMonomials
 /////////////////////////////////////////////////////////////////////////////
-void CPFConstant::GetMonomials(const double *vx, double *vMonomial) const
-{
- vMonomial[0] = 1.0;
-}
+void CPFConstant::GetMonomials(const double *vx, double *vMonomial) const { vMonomial[0] = 1.0; }
 
 /////////////////////////////////////////////////////////////////////////////
 // GetGradient
 /////////////////////////////////////////////////////////////////////////////
-void CPFConstant::GetGradient(const double *vParam,
-                              const double *vx,
-                              double *vG) const
-{
- for (int i = Dimensions; --i >= 0;)
-  vG[i] = 0.0;
+void CPFConstant::GetGradient(const double *vParam, const double *vx, double *vG) const {
+	for (int i = Dimensions; --i >= 0;)
+		vG[i] = 0.0;
 }

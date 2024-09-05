@@ -4,23 +4,21 @@
 #include <QSyntaxHighlighter>
 #include <QtWidgets/QTextEdit>
 
-class CCLOPSyntaxHighlighter : public QSyntaxHighlighter
-{
-     Q_OBJECT
+class CCLOPSyntaxHighlighter : public QSyntaxHighlighter {
+	Q_OBJECT
 
- public:
-     CCLOPSyntaxHighlighter(QTextEdit *parent = 0);
+      public:
+	CCLOPSyntaxHighlighter(QTextEdit *parent = 0);
 
- protected:
-     void highlightBlock(const QString &text);
+      protected:
+	void highlightBlock(const QString &text);
 
- private:
-     struct HighlightingRule
-     {
-         QRegExp pattern;
-         QTextCharFormat format;
-     };
-     QVector<HighlightingRule> highlightingRules;
- };
+      private:
+	struct HighlightingRule {
+		QRegExp pattern;
+		QTextCharFormat format;
+	};
+	QVector<HighlightingRule> highlightingRules;
+};
 
 #endif // CCLOPSYNTAXHIGHLIGHTER_H

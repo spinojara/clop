@@ -23,41 +23,38 @@ class CArtificialExperiment;
 
 class CRepeatThreads // rts
 {
- friend class CRepeatThread;
+	friend class CRepeatThread;
 
- private: ///////////////////////////////////////////////////////////////////
-  const int TotalRepeats;
-  const int Samples;
+      private: ///////////////////////////////////////////////////////////////////
+	const int TotalRepeats;
+	const int Samples;
 
-  std::vector<CArtificialExperiment *> vpartexp;
-  boost::thread_group tg;
+	std::vector<CArtificialExperiment *> vpartexp;
+	boost::thread_group tg;
 
-  boost::mutex mutDispatch;
-  int CurrentSeed;
-  bool Dispatch(CRepeatThread &rt);
+	boost::mutex mutDispatch;
+	int CurrentSeed;
+	bool Dispatch(CRepeatThread &rt);
 
-  std::vector<CCheckPointData*> vpcpd;
-  CCPListener *pcpl;
+	std::vector<CCheckPointData *> vpcpd;
+	CCPListener *pcpl;
 
- public: ////////////////////////////////////////////////////////////////////
-  CRepeatThreads(int Repeats, int Samples, CCPListener *pcpl = 0);
+      public: ////////////////////////////////////////////////////////////////////
+	CRepeatThreads(int Repeats, int Samples, CCPListener *pcpl = 0);
 
-  void AddThread(CArtificialExperiment &artexp) {vpartexp.push_back(&artexp);}
+	void AddThread(CArtificialExperiment &artexp) { vpartexp.push_back(&artexp); }
 
-  // Check points must be added in decreasing order of Samples
-  // The constructor already creates a checkpoint at Samples = SamplesInit
-  // More checkpoints must be added manually
-  void AddCheckPoint(int Samples)
-  {
-   vpcpd.push_back(new CCheckPointData(TotalRepeats, Samples, 0));
-  }
-  int GetCheckPoints() {return int(vpcpd.size());}
-  const CCheckPointData &GetCheckPointData(int i) {return *vpcpd[i];}
+	// Check points must be added in decreasing order of Samples
+	// The constructor already creates a checkpoint at Samples = SamplesInit
+	// More checkpoints must be added manually
+	void AddCheckPoint(int Samples) { vpcpd.push_back(new CCheckPointData(TotalRepeats, Samples, 0)); }
+	int GetCheckPoints() { return int(vpcpd.size()); }
+	const CCheckPointData &GetCheckPointData(int i) { return *vpcpd[i]; }
 
-  void Start();
-  void WaitForTermination();
+	void Start();
+	void WaitForTermination();
 
-  ~CRepeatThreads();
+	~CRepeatThreads();
 };
 
 #endif

@@ -14,14 +14,13 @@
 
 #include <vector>
 
-class CSPDyadic: public CSamplingPolicy
-{
- private:
-  std::vector<double> v;
+class CSPDyadic : public CSamplingPolicy {
+      private:
+	std::vector<double> v;
 
- public:
-  explicit CSPDyadic(int Dimensions): v(Dimensions) {}
-  const double *NextSample(int i);
+      public:
+	explicit CSPDyadic(int Dimensions) : v(Dimensions) {}
+	const double *NextSample(int i);
 };
 
 #endif

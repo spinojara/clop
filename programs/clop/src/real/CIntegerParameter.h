@@ -12,16 +12,16 @@
 
 #include "CParameter.h"
 
-class CIntegerParameter: public CParameter // intparam
+class CIntegerParameter : public CParameter // intparam
 {
- private: ///////////////////////////////////////////////////////////////////
-  const double Min;
-  const double Max;
+      private: ///////////////////////////////////////////////////////////////////
+	const double Min;
+	const double Max;
 
- public: ////////////////////////////////////////////////////////////////////
-  CIntegerParameter(const std::string &s, int Min, int Max);
-  double TransformToQLR(double x) const;
-  double TransformFromQLR(double x) const;
+      public: ////////////////////////////////////////////////////////////////////
+	CIntegerParameter(const std::string &s, int Min, int Max);
+	double TransformToQLR(double x) const;
+	double TransformFromQLR(double x) const;
 };
 
 #endif

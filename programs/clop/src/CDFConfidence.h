@@ -12,25 +12,25 @@
 
 #include "CDFVariance.h"
 
-class CDFConfidence: public CDFVariance // dfconf
+class CDFConfidence : public CDFVariance // dfconf
 {
- protected: /////////////////////////////////////////////////////////////////
-  std::vector<double> vz;
-  std::vector<double> vZ;
-  std::vector<double> vX;
-  std::vector<double> vSigmaX;
+      protected: /////////////////////////////////////////////////////////////////
+	std::vector<double> vz;
+	std::vector<double> vZ;
+	std::vector<double> vX;
+	std::vector<double> vSigmaX;
 
-  double r;
-  double var;
-  double dev;
+	double r;
+	double var;
+	double dev;
 
-  void ComputeZ();
+	void ComputeZ();
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CDFConfidence(CRegression &reg);
-  void ComputeVariance(const double *vInput);
-  double GetDeviation() const {return dev;}
-  double GetVariance() const {return var;}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CDFConfidence(CRegression &reg);
+	void ComputeVariance(const double *vInput);
+	double GetDeviation() const { return dev; }
+	double GetVariance() const { return var; }
 };
 
 #endif

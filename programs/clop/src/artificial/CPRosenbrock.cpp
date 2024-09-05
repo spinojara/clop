@@ -18,21 +18,19 @@ const double CPRosenbrock::Scale = 0.1;
 /////////////////////////////////////////////////////////////////////////////
 // Strength
 /////////////////////////////////////////////////////////////////////////////
-double CPRosenbrock::GetStrength(const double v[]) const
-{
- double x = v[0] * xMul + xOffset;
- double y = v[1] * yMul + yOffset;
+double CPRosenbrock::GetStrength(const double v[]) const {
+	double x = v[0] * xMul + xOffset;
+	double y = v[1] * yMul + yOffset;
 
- double f = (1 - x) * (1 - x) + 1.0 * (y - x * x) * (y - x * x);
+	double f = (1 - x) * (1 - x) + 1.0 * (y - x * x) * (y - x * x);
 
- return 1.0 - f * Scale;
+	return 1.0 - f * Scale;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Optimal Parameters
 /////////////////////////////////////////////////////////////////////////////
-void CPRosenbrock::GetOptimalParameters(double v[]) const
-{
- v[0] = (1.0 - xOffset) / xMul;
- v[1] = (1.0 - yOffset) / yMul;
+void CPRosenbrock::GetOptimalParameters(double v[]) const {
+	v[0] = (1.0 - xOffset) / xMul;
+	v[1] = (1.0 - yOffset) / yMul;
 }

@@ -12,15 +12,15 @@
 
 #include "CArtificialProblem.h"
 
-class CPQuadraticND: public CArtificialProblem // qnd
+class CPQuadraticND : public CArtificialProblem // qnd
 {
- private: ///////////////////////////////////////////////////////////////////
-  const int Dimensions;
+      private: ///////////////////////////////////////////////////////////////////
+	const int Dimensions;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CPQuadraticND(int Dimensions): Dimensions(Dimensions) {}
-  double GetStrength(const double v[]) const;
-  int GetDimensions() const {return Dimensions;}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CPQuadraticND(int Dimensions) : Dimensions(Dimensions) {}
+	double GetStrength(const double v[]) const;
+	int GetDimensions() const { return Dimensions; }
 };
 
 #endif

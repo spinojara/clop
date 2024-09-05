@@ -17,24 +17,17 @@ class CResults;
 
 class CArtificialExperiment // artexp
 {
- public: ////////////////////////////////////////////////////////////////////
-  CArtificialProblem &problem;
-  CSamplingPolicy &sp;
-  CMaxEstimator &me;
-  CResults &results;
+      public: ////////////////////////////////////////////////////////////////////
+	CArtificialProblem &problem;
+	CSamplingPolicy &sp;
+	CMaxEstimator &me;
+	CResults &results;
 
- public: ////////////////////////////////////////////////////////////////////
-  CArtificialExperiment(CArtificialProblem &problem,
-                        CSamplingPolicy &sp,
-                        CMaxEstimator &me,
-                        CResults &results):
-   problem(problem),
-   sp(sp),
-   me(me),
-   results(results)
-  {}
+      public: ////////////////////////////////////////////////////////////////////
+	CArtificialExperiment(CArtificialProblem &problem, CSamplingPolicy &sp, CMaxEstimator &me, CResults &results)
+	    : problem(problem), sp(sp), me(me), results(results) {}
 
-  void Reserve(unsigned n);
+	void Reserve(unsigned n);
 };
 
 #endif

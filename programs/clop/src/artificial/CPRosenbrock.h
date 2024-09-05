@@ -12,19 +12,19 @@
 
 #include "CArtificialProblem.h"
 
-class CPRosenbrock: public CArtificialProblem // rosenbrock
+class CPRosenbrock : public CArtificialProblem // rosenbrock
 {
- private: ///////////////////////////////////////////////////////////////////
-  static const double xMul;
-  static const double yMul;
-  static const double xOffset;
-  static const double yOffset;
-  static const double Scale;
+      private: ///////////////////////////////////////////////////////////////////
+	static const double xMul;
+	static const double yMul;
+	static const double xOffset;
+	static const double yOffset;
+	static const double Scale;
 
- public: ////////////////////////////////////////////////////////////////////
-  double GetStrength(const double v[]) const;
-  int GetDimensions() const {return 2;}
-  void GetOptimalParameters(double v[]) const;
+      public: ////////////////////////////////////////////////////////////////////
+	double GetStrength(const double v[]) const;
+	int GetDimensions() const { return 2; }
+	void GetOptimalParameters(double v[]) const;
 };
 
 #endif

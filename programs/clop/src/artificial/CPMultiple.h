@@ -12,21 +12,18 @@
 
 #include "CArtificialProblem.h"
 
-class CPMultiple: public CArtificialProblem // multi
+class CPMultiple : public CArtificialProblem // multi
 {
- private: ///////////////////////////////////////////////////////////////////
-  const int Multiplier;
-  const CArtificialProblem &problem;
+      private: ///////////////////////////////////////////////////////////////////
+	const int Multiplier;
+	const CArtificialProblem &problem;
 
- public: ////////////////////////////////////////////////////////////////////
-  CPMultiple(int Multiplier, const CArtificialProblem &problem):
-   Multiplier(Multiplier),
-   problem(problem)
-  {}
+      public: ////////////////////////////////////////////////////////////////////
+	CPMultiple(int Multiplier, const CArtificialProblem &problem) : Multiplier(Multiplier), problem(problem) {}
 
-  double GetStrength(const double v[]) const;
-  int GetDimensions() const {return Multiplier * problem.GetDimensions();}
-  void GetOptimalParameters(double v[]) const;
+	double GetStrength(const double v[]) const;
+	int GetDimensions() const { return Multiplier * problem.GetDimensions(); }
+	void GetOptimalParameters(double v[]) const;
 };
 
 #endif

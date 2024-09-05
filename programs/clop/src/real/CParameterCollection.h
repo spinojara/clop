@@ -14,17 +14,16 @@
 
 class CParameter;
 
-class CParameterCollection
-{
- private: ///////////////////////////////////////////////////////////////////
-  std::vector<const CParameter *> vpparam;
-  mutable std::vector<double> vTranslation;
+class CParameterCollection {
+      private: ///////////////////////////////////////////////////////////////////
+	std::vector<const CParameter *> vpparam;
+	mutable std::vector<double> vTranslation;
 
- public: ////////////////////////////////////////////////////////////////////
-  void Add(const CParameter &param);
-  const double *Translate(const double *v) const;
-  int GetSize() const {return vpparam.size();}
-  const CParameter &GetParam(int i) const {return *vpparam[i];}
+      public: ////////////////////////////////////////////////////////////////////
+	void Add(const CParameter &param);
+	const double *Translate(const double *v) const;
+	int GetSize() const { return vpparam.size(); }
+	const CParameter &GetParam(int i) const { return *vpparam[i]; }
 };
 
 #endif

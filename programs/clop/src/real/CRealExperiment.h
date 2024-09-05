@@ -25,70 +25,65 @@ class CProblemRunner;
 class CSamplingPolicy;
 class CResults;
 
-class CRealExperiment: // rexp
- public QObject,
- private CObserver
-{
- Q_OBJECT
+class CRealExperiment : // rexp
+			public QObject,
+			private CObserver {
+	Q_OBJECT
 
- private: ///////////////////////////////////////////////////////////////////
-  const CRealProblem &problem;
-  CSamplingPolicy &sp;
-  CResults &results;
-  const std::string sName;
-  const int Replications;
-  const bool fStopOnError;
+      private: ///////////////////////////////////////////////////////////////////
+	const CRealProblem &problem;
+	CSamplingPolicy &sp;
+	CResults &results;
+	const std::string sName;
+	const int Replications;
+	const bool fStopOnError;
 
-  bool fAbortLoading;
+	bool fAbortLoading;
 
-  int TargetSamples;
-  bool fStop;
+	int TargetSamples;
+	bool fStop;
 
-  std::vector<CProblemRunner *> vpr;
-  int RunningProcessors;
+	std::vector<CProblemRunner *> vpr;
+	int RunningProcessors;
 
-  bool Done() const;
+	bool Done() const;
 
-  std::fstream fsDat;
-  std::set<int> setInProgress;
+	std::fstream fsDat;
+	std::set<int> setInProgress;
 
-  void OnSample();
-  void OnOutcome(int i);
-  void ReplayBackup(std::ifstream &ifs);
-  void StartGame(int id);
-  void AfterRun(int id);
+	void OnSample();
+	void OnOutcome(int i);
+	void ReplayBackup(std::ifstream &ifs);
+	void StartGame(int id);
+	void AfterRun(int id);
 
- private slots: /////////////////////////////////////////////////////////////
-  void OnPROutcome(int id, int Seed, COutcome outcome);
-  void OnPRError(int id, int Seed);
+      private slots: /////////////////////////////////////////////////////////////
+	void OnPROutcome(int id, int Seed, COutcome outcome);
+	void OnPRError(int id, int Seed);
 
- public: ////////////////////////////////////////////////////////////////////
-  CRealExperiment(const CRealProblem &problem,
-                  CSamplingPolicy &sp,
-                  CResults &results,
-                  const std::string &sName,
-                  int Replications,
-                  bool fStopOnError);
+      public: ////////////////////////////////////////////////////////////////////
+	CRealExperiment(const CRealProblem &problem, CSamplingPolicy &sp, CResults &results, const std::string &sName,
+			int Replications, bool fStopOnError);
 
-  void StartLogs();
-  void AddProcessor(const std::string &s);
-  void Run();
-  void SoftStop();
-  void HardStop();
+	void StartLogs();
+	void AddProcessor(const std::string &s);
+	void Run();
+	void SoftStop();
+	void HardStop();
 
-  ~CRealExperiment();
+	~CRealExperiment();
 
- public slots: //////////////////////////////////////////////////////////////
-  void AbortLoading() {fAbortLoading = true;}
+      public slots: //////////////////////////////////////////////////////////////
+	void AbortLoading() { fAbortLoading = true; }
 
- signals: ///////////////////////////////////////////////////////////////////
-  void StartLoading(int size);
-  void LoadingProgress(int pos);
-  void Started();
-  void Result();
-  void Sample();
-  void Finished();
-  void Message(std::string sMessage);
+      signals: ///////////////////////////////////////////////////////////////////
+	void StartLoading(int size);
+	void LoadingProgress(int pos);
+	void Started();
+	void Result();
+	void Sample();
+	void Finished();
+	void Message(std::string sMessage);
 };
 
 #endif

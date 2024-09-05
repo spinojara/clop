@@ -16,35 +16,28 @@
 #include <vector>
 
 /////////////////////////////////////////////////////////////////////////////
-class CSPQuasiRandom: public CSamplingPolicy // spQR
+class CSPQuasiRandom : public CSamplingPolicy // spQR
 /////////////////////////////////////////////////////////////////////////////
 {
- private: ///////////////////////////////////////////////////////////////////
-  std::vector<double> v; 
+      private: ///////////////////////////////////////////////////////////////////
+	std::vector<double> v;
 
- protected: /////////////////////////////////////////////////////////////////
-  gsl_qrng *q;
+      protected: /////////////////////////////////////////////////////////////////
+	gsl_qrng *q;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CSPQuasiRandom(int Dimensions): v(Dimensions) {}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CSPQuasiRandom(int Dimensions) : v(Dimensions) {}
 
-  void Seed(unsigned n)
-  {
-   gsl_qrng_init(q);
-  }
+	void Seed(unsigned n) { gsl_qrng_init(q); }
 
-  const double *NextSample(int i)
-  {
-   gsl_qrng_get(q, &v[0]);
-   for (int j = v.size(); --j >= 0;)
-    v[j] = -1 + 2 * v[j];
-   return v;
-  }
+	const double *NextSample(int i) {
+		gsl_qrng_get(q, &v[0]);
+		for (int j = v.size(); --j >= 0;)
+			v[j] = -1 + 2 * v[j];
+		return v;
+	}
 
-  ~CSPQuasiRandom()
-  {
-   gsl_qrng_free(q);
-  }
+	~CSPQuasiRandom() { gsl_qrng_free(q); }
 };
 
 #if 0 // (only supported in more recent gsl)

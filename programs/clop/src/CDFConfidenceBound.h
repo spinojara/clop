@@ -12,15 +12,15 @@
 
 #include "CDFConfidence.h"
 
-class CDFConfidenceBound: public CDFConfidence // dfcb
+class CDFConfidenceBound : public CDFConfidence // dfcb
 {
- private: ///////////////////////////////////////////////////////////////////
-  const double Alpha;
+      private: ///////////////////////////////////////////////////////////////////
+	const double Alpha;
 
- public: ////////////////////////////////////////////////////////////////////
-  CDFConfidenceBound(CRegression &reg, double Alpha);
+      public: ////////////////////////////////////////////////////////////////////
+	CDFConfidenceBound(CRegression &reg, double Alpha);
 
-  double GetOutput(const double *vInput);
+	double GetOutput(const double *vInput);
 };
 
 #endif

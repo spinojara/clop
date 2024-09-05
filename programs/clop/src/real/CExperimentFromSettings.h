@@ -24,26 +24,25 @@
 
 class CExperimentSettings;
 
-class CExperimentFromSettings
-{
- public: ////////////////////////////////////////////////////////////////////
-  CParameterCollection paramcol;
-  CResults results;
-  CPFQuadratic pfq;
-  CPFIndependentQuadratic pfiq;
-  CRegression reg;
-  CMERegressionMAPMax me;
-  CSPWeight sp;
-  CRealProblem problem;
-  CRealExperiment rexp;
-  CExperimentLogFile elf;
-  CEigenSystem eigen;
+class CExperimentFromSettings {
+      public: ////////////////////////////////////////////////////////////////////
+	CParameterCollection paramcol;
+	CResults results;
+	CPFQuadratic pfq;
+	CPFIndependentQuadratic pfiq;
+	CRegression reg;
+	CMERegressionMAPMax me;
+	CSPWeight sp;
+	CRealProblem problem;
+	CRealExperiment rexp;
+	CExperimentLogFile elf;
+	CEigenSystem eigen;
 
- public: ////////////////////////////////////////////////////////////////////
-  CExperimentFromSettings(const CExperimentSettings &es);
-  CRealExperiment &GetExperiment() {return rexp;}
+      public: ////////////////////////////////////////////////////////////////////
+	CExperimentFromSettings(const CExperimentSettings &es);
+	CRealExperiment &GetExperiment() { return rexp; }
 
-  void QuickLoad();
+	void QuickLoad();
 };
 
 #endif // CExperimentFromSettings_Declared

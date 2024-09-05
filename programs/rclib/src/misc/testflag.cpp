@@ -14,21 +14,20 @@
 ////////////////////////////////////////////////////////////////////////////
 // Main function
 ////////////////////////////////////////////////////////////////////////////
-int main(void)
-{
- int i = 0;
- CUserFlag flag;
+int main(void) {
+	int i = 0;
+	CUserFlag flag;
 
- while (!flag.IsSet())
-  cout << "Press Ctrl-C " << ++i << '\n';
+	while (!flag.IsSet())
+		cout << "Press Ctrl-C " << ++i << '\n';
 
- cout << "Ctrl-C pressed after " << i << " iterations\n";
- flag.Reset();
+	cout << "Ctrl-C pressed after " << i << " iterations\n";
+	flag.Reset();
 
- while (!flag.IsSet())
-  cout << "Press Ctrl-C again " << ++i << '\n';
-  
- cout << "Ctrl-C pressed again after " << i << " iterations\n";
+	while (!flag.IsSet())
+		cout << "Press Ctrl-C again " << ++i << '\n';
 
- return 0;
+	cout << "Ctrl-C pressed again after " << i << " iterations\n";
+
+	return 0;
 }

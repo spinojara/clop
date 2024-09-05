@@ -12,25 +12,19 @@
 
 class CLUDecomposition // lud
 {
- private: /////////////////////////////////////////////////////////////////
-  int n;
-  double *pdImplicitScaling;
-  double *pdy;
+      private: /////////////////////////////////////////////////////////////////
+	int n;
+	double *pdImplicitScaling;
+	double *pdy;
 
- public: //////////////////////////////////////////////////////////////////
-  CLUDecomposition(int nInit);
+      public: //////////////////////////////////////////////////////////////////
+	CLUDecomposition(int nInit);
 
-  void Decompose(double *pdMatrix, int *pIndex) const;
-  void Solve(const double *pdMatrix,
-             const int *pIndex,
-             const double *pb,
-             double *px) const;
-  void SolveTranspose(const double *pdMatrix,
-                      const int *pIndex,
-                      const double *pb,
-                      double *px) const;
+	void Decompose(double *pdMatrix, int *pIndex) const;
+	void Solve(const double *pdMatrix, const int *pIndex, const double *pb, double *px) const;
+	void SolveTranspose(const double *pdMatrix, const int *pIndex, const double *pb, double *px) const;
 
-  ~CLUDecomposition();
+	~CLUDecomposition();
 };
 
 #endif

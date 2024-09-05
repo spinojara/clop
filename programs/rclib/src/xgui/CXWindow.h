@@ -15,30 +15,30 @@
 
 class CXWindow // xwin
 {
- protected: /////////////////////////////////////////////////////////////////
-  Display *display;
-  Window win;
-  int screen;
-  GC gc;
-  Visual *pvis;
+      protected: /////////////////////////////////////////////////////////////////
+	Display *display;
+	Window win;
+	int screen;
+	GC gc;
+	Visual *pvis;
 
-  unsigned RMult, RMax;
-  unsigned GMult, GMax;
-  unsigned BMult, BMax;
+	unsigned RMult, RMax;
+	unsigned GMult, GMax;
+	unsigned BMult, BMax;
 
-  Colormap map;
-  XColor White;
-  XColor Black;
-  XColor LightGrey;
-  XColor DimGrey;
+	Colormap map;
+	XColor White;
+	XColor Black;
+	XColor LightGrey;
+	XColor DimGrey;
 
-  Atom wm_delete_window;
+	Atom wm_delete_window;
 
-  static Bool Predicate(Display *disp, XEvent *e, XPointer arg);
+	static Bool Predicate(Display *disp, XEvent *e, XPointer arg);
 
- public: ///////////////////////////////////////////////////////////////////
-  CXWindow(int SizeX, int SizeY);
-  virtual ~CXWindow();
+      public: ///////////////////////////////////////////////////////////////////
+	CXWindow(int SizeX, int SizeY);
+	virtual ~CXWindow();
 };
 
 #endif

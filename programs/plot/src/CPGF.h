@@ -13,28 +13,17 @@
 #include <iosfwd>
 #include <string>
 
-class CPGF
-{
- public:
-  static void Point(std::ostream &out,
-                    double x,
-                    double y,
-                    int Precision = 1);
+class CPGF {
+      public:
+	static void Point(std::ostream &out, double x, double y, int Precision = 1);
 
-  static void Circle(std::ostream &out,
-                     int n,
-                     double x,
-                     double y,
-                     double r);
+	static void Circle(std::ostream &out, int n, double x, double y, double r);
 
-  static void Cross(std::ostream &out,
-                    double x,
-                    double y,
-                    double r);
+	static void Cross(std::ostream &out, double x, double y, double r);
 
-  static int GetPrecision(double DMax);
+	static int GetPrecision(double DMax);
 
-  static const double cmtopt;
+	static const double cmtopt;
 };
 
 #endif

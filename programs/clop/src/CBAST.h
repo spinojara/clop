@@ -20,101 +20,95 @@
 #include <vector>
 #include <algorithm>
 
-class CBAST: // bast
- public CSamplingPolicy,
- public CMaxEstimator,
- private CObserver
-{
- private: ///////////////////////////////////////////////////////////////////
-  struct CNode // node
-  {
-   CNode *tpnodeChild[2];
-   CNode *pnodeParent;
+class CBAST : // bast
+	      public CSamplingPolicy,
+	      public CMaxEstimator,
+	      private CObserver {
+      private:	     ///////////////////////////////////////////////////////////////////
+	struct CNode // node
+	{
+		CNode *tpnodeChild[2];
+		CNode *pnodeParent;
 
-   int Depth;
-   int Dim;
+		int Depth;
+		int Dim;
 
-   COutcome outcome;
+		COutcome outcome;
 
-   int Games;
-   int Victories;
+		int Games;
+		int Victories;
 
-   void Reset();
-  };
+		void Reset();
+	};
 
-  class CNodePool
-  {
-   private:
-    std::deque<CNode> dqnode;
-    std::deque<CNode>::iterator i;
+	class CNodePool {
+	      private:
+		std::deque<CNode> dqnode;
+		std::deque<CNode>::iterator i;
 
-   public:
-    CNodePool() {Reset();}
-    void Reset() {i = dqnode.begin();}
-    void Reserve(unsigned n) {dqnode.resize(2 * n);}
+	      public:
+		CNodePool() { Reset(); }
+		void Reset() { i = dqnode.begin(); }
+		void Reserve(unsigned n) { dqnode.resize(2 * n); }
 
-    CNode &Allocate()
-    {
-     if (i == dqnode.end())
-      i = dqnode.insert(i, CNode());
-     i->Reset();
-     return *i++;
-    }
+		CNode &Allocate() {
+			if (i == dqnode.end())
+				i = dqnode.insert(i, CNode());
+			i->Reset();
+			return *i++;
+		}
 
-  } nodepool;
+	} nodepool;
 
-  void CreateChildren(CNode &node);
+	void CreateChildren(CNode &node);
 
- private: ///////////////////////////////////////////////////////////////////
-  mutable struct CArea
-  {
-   std::vector<double> vCenter;
-   std::vector<double> vRadius;
+      private: ///////////////////////////////////////////////////////////////////
+	mutable struct CArea {
+		std::vector<double> vCenter;
+		std::vector<double> vRadius;
 
-   explicit CArea(int n): vCenter(n), vRadius(n) {Reset();}
+		explicit CArea(int n) : vCenter(n), vRadius(n) { Reset(); }
 
-   void Reset()
-   {
-    std::fill(vCenter.begin(), vCenter.end(), 0.0);
-    std::fill(vRadius.begin(), vRadius.end(), 1.0);
-   }
+		void Reset() {
+			std::fill(vCenter.begin(), vCenter.end(), 0.0);
+			std::fill(vRadius.begin(), vRadius.end(), 1.0);
+		}
 
-   CNode *Follow(const CNode &node, int i)
-   {
-    const int Dim = node.Dim;
-    vRadius[Dim] *= 0.5;
-    vCenter[Dim] += vRadius[Dim] * (2 * i - 1);
-    return node.tpnodeChild[i];
-   }
-  } area;
+		CNode *Follow(const CNode &node, int i) {
+			const int Dim = node.Dim;
+			vRadius[Dim] *= 0.5;
+			vCenter[Dim] += vRadius[Dim] * (2 * i - 1);
+			return node.tpnodeChild[i];
+		}
+	} area;
 
- private: ///////////////////////////////////////////////////////////////////
-  const int Dimensions;
-  const double Exploration;
+      private: ///////////////////////////////////////////////////////////////////
+	const int Dimensions;
+	const double Exploration;
 
-  CNode *pnodeRoot;
-  CQuickMap<CNode> qmInProgress;
+	CNode *pnodeRoot;
+	CQuickMap<CNode> qmInProgress;
 
-  //
-  // CObserver
-  //
-  void OnOutcome(int i);
-  void OnReset();
+	//
+	// CObserver
+	//
+	void OnOutcome(int i);
+	void OnReset();
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CBAST(CResults &results, double Exploration = 1.0);
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CBAST(CResults &results, double Exploration = 1.0);
 
-  //
-  // CSamplingPolicy
-  //
-  const double *NextSample(int i);
-  bool IsFlexible() const {return false;}
+	//
+	// CSamplingPolicy
+	//
+	const double *NextSample(int i);
+	bool IsFlexible() const { return false; }
 
-  //
-  // CMaxEstimator
-  //
-  bool MaxParameter(double vMax[]) const;
-  void Reserve(unsigned n) {nodepool.Reserve(n);}
+	//
+	// CMaxEstimator
+	//
+	bool MaxParameter(double vMax[]) const;
+	void Reserve(unsigned n) { nodepool.Reserve(n); }
 };
 
 #endif

@@ -14,19 +14,16 @@
 /////////////////////////////////////////////////////////////////////////////
 // Read a line to a string
 /////////////////////////////////////////////////////////////////////////////
-void ReadLineToString(std::string &s, std::istream &in)
-{
- s.clear();
- while (1)
- {
-  char c;
-  if (in.get(c))
-  {
-   if (c == '\n')
-    break;
-   s += c;
-  }
-  else
-   break;
- }
+void ReadLineToString(std::string &s, std::istream &in) {
+	s.clear();
+	while (1) {
+		char c;
+		if (in.get(c)) {
+			if (c == '\n')
+				break;
+			s += c;
+		}
+		else
+			break;
+	}
 }

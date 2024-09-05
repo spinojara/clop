@@ -15,23 +15,23 @@
 
 class CArtificialProblem // aproblem
 {
- private: ///////////////////////////////////////////////////////////////////
-  CRandom<unsigned> rnd;
+      private: ///////////////////////////////////////////////////////////////////
+	CRandom<unsigned> rnd;
 
- public: ////////////////////////////////////////////////////////////////////
-  COutcome GetOutcome(const double v[]);
+      public: ////////////////////////////////////////////////////////////////////
+	COutcome GetOutcome(const double v[]);
 
-  void Seed(unsigned n) {rnd.Seed(n);}
+	void Seed(unsigned n) { rnd.Seed(n); }
 
-  virtual int GetDimensions() const = 0;
-  virtual double GetStrength(const double v[]) const = 0;
-  virtual double GetProba(const double v[]) const;
+	virtual int GetDimensions() const = 0;
+	virtual double GetStrength(const double v[]) const = 0;
+	virtual double GetProba(const double v[]) const;
 
-  virtual double GetOptimalProba() const;
+	virtual double GetOptimalProba() const;
 
-  virtual void GetOptimalParameters(double v[]) const = 0;
+	virtual void GetOptimalParameters(double v[]) const = 0;
 
-  virtual ~CArtificialProblem() {}
+	virtual ~CArtificialProblem() {}
 };
 
 #endif

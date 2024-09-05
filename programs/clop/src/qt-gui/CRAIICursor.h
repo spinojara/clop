@@ -3,11 +3,10 @@
 
 class QCursor;
 
-class CRAIICursor
-{
-public:
-    CRAIICursor(const QCursor &cursor);
-    ~CRAIICursor();
+class CRAIICursor {
+      public:
+	CRAIICursor(const QCursor &cursor);
+	~CRAIICursor();
 };
 
 #endif // CRAIICURSOR_H

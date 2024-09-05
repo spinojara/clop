@@ -14,18 +14,16 @@ const double CPQuadratic2D::x0 = 0.25;
 /////////////////////////////////////////////////////////////////////////////
 // Quadratic strength function
 /////////////////////////////////////////////////////////////////////////////
-double CPQuadratic2D::GetStrength(const double v[]) const
-{
- double d0 = v[0] - x0;
- double d1 = v[1] - x0;
- return 1.0 - 30.0 * (d0 * d0 + d1 * d1 + 1.8 * d0 * d1);
+double CPQuadratic2D::GetStrength(const double v[]) const {
+	double d0 = v[0] - x0;
+	double d1 = v[1] - x0;
+	return 1.0 - 30.0 * (d0 * d0 + d1 * d1 + 1.8 * d0 * d1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Optimal Parameters
 /////////////////////////////////////////////////////////////////////////////
-void CPQuadratic2D::GetOptimalParameters(double v[]) const
-{
- v[0] = x0;
- v[1] = x0;
+void CPQuadratic2D::GetOptimalParameters(double v[]) const {
+	v[0] = x0;
+	v[1] = x0;
 }

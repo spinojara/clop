@@ -16,21 +16,20 @@
 
 class CCheckPointData;
 
-class CCPLConsole: public CCPListener
-{
- private: ///////////////////////////////////////////////////////////////////
-  boost::posix_time::ptime StartTime;
-  const int Every;
-  long PreviousTimeLeft;
+class CCPLConsole : public CCPListener {
+      private: ///////////////////////////////////////////////////////////////////
+	boost::posix_time::ptime StartTime;
+	const int Every;
+	long PreviousTimeLeft;
 
-  CUserFlag flag;
+	CUserFlag flag;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CCPLConsole(int Every = 1): Every(Every) {}
-  void OnStart(const CCheckPointData &cpd);
-  void OnCollect(const CCheckPointData &cpd);
-  void OnStop(const CCheckPointData &cpd);
-  bool Continue() const {return !flag.IsSet();}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CCPLConsole(int Every = 1) : Every(Every) {}
+	void OnStart(const CCheckPointData &cpd);
+	void OnCollect(const CCheckPointData &cpd);
+	void OnStop(const CCheckPointData &cpd);
+	bool Continue() const { return !flag.IsSet(); }
 };
 
 #endif

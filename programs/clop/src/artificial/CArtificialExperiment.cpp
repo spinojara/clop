@@ -15,9 +15,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // Reserve memory
 /////////////////////////////////////////////////////////////////////////////
-void CArtificialExperiment::Reserve(unsigned n)
-{
- sp.Reserve(n);
- me.Reserve(n);
- results.Reserve(n);
+void CArtificialExperiment::Reserve(unsigned n) {
+	sp.Reserve(n);
+	me.Reserve(n);
+	results.Reserve(n);
 }

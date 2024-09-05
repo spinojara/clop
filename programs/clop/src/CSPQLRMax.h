@@ -16,20 +16,23 @@
 
 class CRegression;
 
-class CSPQLRMax: public CSamplingPolicy // qlrmax
+class CSPQLRMax : public CSamplingPolicy // qlrmax
 {
- private: ////////////////////////////////////////////////////////////////////
-  CRegression &reg;
-  CRandom<unsigned> rnd;
-  std::vector<double> vMax;
-  int Retries;
+      private: ////////////////////////////////////////////////////////////////////
+	CRegression &reg;
+	CRandom<unsigned> rnd;
+	std::vector<double> vMax;
+	int Retries;
 
-  CSPDyadic sp;
+	CSPDyadic sp;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CSPQLRMax(CRegression &reg);
-  void Seed(unsigned n) {rnd.Seed(n); sp.Seed(n);}
-  const double *NextSample(int i);
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CSPQLRMax(CRegression &reg);
+	void Seed(unsigned n) {
+		rnd.Seed(n);
+		sp.Seed(n);
+	}
+	const double *NextSample(int i);
 };
 
 #endif

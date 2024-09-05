@@ -17,20 +17,20 @@ class CArtificialExperiment;
 
 class CRepeatThread // rt
 {
- friend class CRepeatThreads;
+	friend class CRepeatThreads;
 
- private: ///////////////////////////////////////////////////////////////////
-  CRepeatThreads &rts;
-  CArtificialExperiment &artexp;
-  int Seed;
+      private: ///////////////////////////////////////////////////////////////////
+	CRepeatThreads &rts;
+	CArtificialExperiment &artexp;
+	int Seed;
 
-  std::vector<double> vMax;
-  std::vector<double> vOptimal;
+	std::vector<double> vMax;
+	std::vector<double> vOptimal;
 
- public: ////////////////////////////////////////////////////////////////////
-  CRepeatThread(CRepeatThreads &rts, CArtificialExperiment &artexp);
+      public: ////////////////////////////////////////////////////////////////////
+	CRepeatThread(CRepeatThreads &rts, CArtificialExperiment &artexp);
 
-  void operator()();
+	void operator()();
 };
 
 #endif

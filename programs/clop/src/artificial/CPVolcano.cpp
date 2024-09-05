@@ -14,34 +14,26 @@
 /////////////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////////////
-CPVolcano::CPVolcano(int dimensions, double alpha):
- dimensions(dimensions),
- alpha(alpha),
- x_star((1.0 / std::sqrt(6.0)) *
-        std::cos((1.0 / 3.0) *
-                 std::acos((3.0 * std::sqrt(6.0) / 8.0) * alpha)))
-{
-}
-
+CPVolcano::CPVolcano(int dimensions, double alpha)
+    : dimensions(dimensions), alpha(alpha),
+      x_star((1.0 / std::sqrt(6.0)) * std::cos((1.0 / 3.0) * std::acos((3.0 * std::sqrt(6.0) / 8.0) * alpha))) {}
 
 /////////////////////////////////////////////////////////////////////////////
 // Strength
 /////////////////////////////////////////////////////////////////////////////
-double CPVolcano::GetStrength(const double v[]) const
-{
- double r2 = 0.0;
- for (int i = dimensions; --i >= 0;)
-  r2 += v[i] * v[i];
+double CPVolcano::GetStrength(const double v[]) const {
+	double r2 = 0.0;
+	for (int i = dimensions; --i >= 0;)
+		r2 += v[i] * v[i];
 
- return 4 * r2 - 16 * r2 * r2 + alpha * v[0];
+	return 4 * r2 - 16 * r2 * r2 + alpha * v[0];
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Optimal Parameters
 /////////////////////////////////////////////////////////////////////////////
-void CPVolcano::GetOptimalParameters(double v[]) const
-{
- for (int i = dimensions; --i > 0;)
-  v[i] = 0.0;
- v[0] = x_star;
+void CPVolcano::GetOptimalParameters(double v[]) const {
+	for (int i = dimensions; --i > 0;)
+		v[i] = 0.0;
+	v[0] = x_star;
 }

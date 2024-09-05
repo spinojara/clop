@@ -12,17 +12,17 @@
 
 #include "CArtificialProblem.h"
 
-class CPNonQuadraticND: public CArtificialProblem // nqnd
+class CPNonQuadraticND : public CArtificialProblem // nqnd
 {
- private: ///////////////////////////////////////////////////////////////////
-  const int Dimensions;
+      private: ///////////////////////////////////////////////////////////////////
+	const int Dimensions;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CPNonQuadraticND(int Dimensions = 1): Dimensions(Dimensions) {}
-  double GetStrength(const double v[]) const;
-  double GetOptimalProba() const;
-  void GetOptimalParameters(double v[]) const;
-  int GetDimensions() const {return Dimensions;}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CPNonQuadraticND(int Dimensions = 1) : Dimensions(Dimensions) {}
+	double GetStrength(const double v[]) const;
+	double GetOptimalProba() const;
+	void GetOptimalParameters(double v[]) const;
+	int GetDimensions() const { return Dimensions; }
 };
 
 #endif

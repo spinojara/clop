@@ -10,18 +10,19 @@
 #ifndef CScopedPointer_Declared
 #define CScopedPointer_Declared
 
-template<typename T> class CScopedPointer // p
+template <typename T>
+class CScopedPointer // p
 {
- private:
-  T* p;
+      private:
+	T *p;
 
- public:
-  CScopedPointer(T *p): p(p) {}
+      public:
+	CScopedPointer(T *p) : p(p) {}
 
-  T &operator*() const {return *p;}
-  T *operator->() const {return p;}
+	T &operator*() const { return *p; }
+	T *operator->() const { return p; }
 
-  ~CScopedPointer() {delete p;}
+	~CScopedPointer() { delete p; }
 };
 
 #endif

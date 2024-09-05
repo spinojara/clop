@@ -12,16 +12,15 @@
 
 #include "CArtificialProblem.h"
 
-class CPDonut: public CArtificialProblem
-{
- private: ///////////////////////////////////////////////////////////////////
-  const int Dimensions;
+class CPDonut : public CArtificialProblem {
+      private: ///////////////////////////////////////////////////////////////////
+	const int Dimensions;
 
- public: ////////////////////////////////////////////////////////////////////
-  explicit CPDonut(int Dimensions): Dimensions(Dimensions) {}
-  double GetStrength(const double v[]) const;
-  void GetOptimalParameters(double v[]) const;
-  int GetDimensions() const {return Dimensions;}
+      public: ////////////////////////////////////////////////////////////////////
+	explicit CPDonut(int Dimensions) : Dimensions(Dimensions) {}
+	double GetStrength(const double v[]) const;
+	void GetOptimalParameters(double v[]) const;
+	int GetDimensions() const { return Dimensions; }
 };
 
 #endif

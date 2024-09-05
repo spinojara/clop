@@ -260,6 +260,7 @@ CRegression::CRegression(CResults &results,
  LocalizationHeight(3.0),
  LocalizationPower(0.0),
  MaxWeightIterations(0),
+ fAutoLocalize(true),
  vTotalWeightedSample(pf.GetDimensions())
 {
  OnReset();

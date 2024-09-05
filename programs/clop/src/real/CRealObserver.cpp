@@ -32,6 +32,7 @@ void CRealObserver::OnOutcome(int i)
  std::cout << std::setw(13) << float(Wins) / (Wins + Losses);
 
  std::vector<double> v(paramcol.GetSize());
+ me.ComputeLocalWeights();
  bool fMax = me.MaxParameter(&v[0]);
  if (fMax)
  {

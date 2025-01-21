@@ -30,7 +30,7 @@ void CRealObserver::OnOutcome(int i) {
 		std::cout << std::setw(10) << "95% UCB";
 		for (int j = 0; j < paramcol.GetSize(); j++) {
 			const CParameter &param = paramcol.GetParam(j);
-			std::cout << std::setw(param.GetName().length() + 2) << param.GetName();
+			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 10)) << param.GetName();
 		}
 		std::cout << "\n\n";
 	}
@@ -60,7 +60,7 @@ void CRealObserver::OnOutcome(int i) {
 
 		for (int j = 0; j < paramcol.GetSize(); j++) {
 			const CParameter &param = paramcol.GetParam(j);
-			std::cout << std::setw(param.GetName().length() + 2) << param.TransformFromQLR(v[j]);
+			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 10)) << param.TransformFromQLR(v[j]);
 		}
 	}
 	else {

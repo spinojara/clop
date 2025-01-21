@@ -11,9 +11,17 @@
 #include "CExperimentFromSettings.h"
 #include "CRealObserver.h"
 #include "CMESampleMean.h"
+#include "CRealExperiment.h"
 
 #include <iostream>
 #include <QCoreApplication>
+#include <csignal>
+
+class CRealExperiment *rexp;
+void sigint_handler(int num) {
+	std::cout << "Soft stopping" << std::endl;
+	rexp->SoftStop();
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // Read a .clop file and start experiment
@@ -37,11 +45,15 @@ int main(int argc, char *argv[]) {
 		efs.QuickLoad();
 		CMESampleMean mesm(efs.reg);
 		CRealObserver robs(efs.results, efs.paramcol, mesm, efs.reg);
+		
+		rexp = &efs.rexp;
 
 		QCoreApplication a(argc, argv);
 		a.connect(&efs.GetExperiment(), SIGNAL(Finished()), SLOT(quit()));
 		efs.GetExperiment().Run();
+		std::cout << "Send SIGUSR1 to soft stop." << std::endl;
 
+		signal(SIGUSR1, &sigint_handler);
 		return a.exec();
 	}
 

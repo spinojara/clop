@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	{
 		efs.QuickLoad();
 		CMESampleMean mesm(efs.reg);
-		CRealObserver robs(efs.results, efs.paramcol, mesm);
+		CRealObserver robs(efs.results, efs.paramcol, mesm, efs.reg);
 
 		QCoreApplication a(argc, argv);
 		a.connect(&efs.GetExperiment(), SIGNAL(Finished()), SLOT(quit()));
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	case 'r': /////////////////////////////////////////////////////////////////
 	{
 		CMESampleMean mesm(efs.reg);
-		CRealObserver robs(efs.results, efs.paramcol, mesm);
+		CRealObserver robs(efs.results, efs.paramcol, mesm, efs.reg);
 		efs.GetExperiment().StartLogs();
 		return 0;
 	}

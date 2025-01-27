@@ -59,13 +59,13 @@ void CRealObserver::OnOutcome(int i) {
 		oss << Elo << "+-" << EloPlusMinus;
 		std::cout << std::setw(13) << oss.str();
 
-		std::vector<double> paramMax(paramcol.GetSize(), 0.0), paramMin(paramcol.GetSize(), 1.0);
+		std::vector<double> paramMax(paramcol.GetSize(), -1.0), paramMin(paramcol.GetSize(), 1.0);
 
 		for (int i = results.GetSamples(); --i >= 0;)
 			if (results.GetOutcome(i) < 3) {
 				const double *v = results.GetSample(i);
 				double Weight = reg.GetWeight(v);
-				if (Weight > 0.5) {
+				if (Weight > 0.8) {
 					for (int j = 0; j < paramcol.GetSize(); j++) {
 						if (paramMax[j] < v[j])
 							paramMax[j] = v[j];

@@ -14,6 +14,7 @@
 #include "CParameter.h"
 
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <cmath>
 
@@ -21,19 +22,19 @@
 // Display stats about current results
 /////////////////////////////////////////////////////////////////////////////
 void CRealObserver::OnOutcome(int i) {
+
 	headers = headers % 20;
 	if (headers == 0) {
 		std::cout << '\n';
 		std::cout << std::setw(8) << "Samples";
-		std::cout << std::setw(10) << "95% LCB";
-		std::cout << std::setw(10) << "Elo";
-		std::cout << std::setw(10) << "95% UCB";
+		std::cout << std::setw(13) << "Elo";
 		for (int j = 0; j < paramcol.GetSize(); j++) {
 			const CParameter &param = paramcol.GetParam(j);
-			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 10)) << param.GetName();
+			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 17)) << param.GetName();
 		}
 		std::cout << "\n\n";
 	}
+
 
 	results.Refresh();
 	std::cout << std::setw(8) << results.GetSamples();
@@ -44,45 +45,54 @@ void CRealObserver::OnOutcome(int i) {
 	double Rating, Variance;
 	reg.GetPosteriorInfo(&v[0], Rating, Variance);
 
+	std::cout << std::fixed << std::setprecision(1);
 	if (fMax) {
 		const double c = 1.96;
 
 		double Deviation = std::sqrt(Variance);
-		double LowerRating = Rating - c * Deviation;
-		double UpperRating = Rating + c * Deviation;
+		double PlusMinus = c * Deviation;
 		double Elo = Rating * 400.0 / std::log(10.0);
-		double LowerElo = LowerRating * 400.0 / std::log(10.0);
-		double UpperElo = UpperRating * 400.0 / std::log(10.0);
+		double EloPlusMinus = PlusMinus * 400.0 / std::log(10.0);
 		
-		std::cout << std::setw(10) << LowerElo;
-		std::cout << std::setw(10) << Elo;
-		std::cout << std::setw(10) << UpperElo;
+		std::ostringstream oss;
+		oss << std::fixed << std::setprecision(1);
+		oss << Elo << "+-" << EloPlusMinus;
+		std::cout << std::setw(13) << oss.str();
 
+		std::vector<double> paramMax(paramcol.GetSize(), 0.0), paramMin(paramcol.GetSize(), 1.0);
+
+		for (int i = results.GetSamples(); --i >= 0;)
+			if (results.GetOutcome(i) < 3) {
+				const double *v = results.GetSample(i);
+				double Weight = reg.GetWeight(v);
+				if (Weight > 0.5) {
+					for (int j = 0; j < paramcol.GetSize(); j++) {
+						if (paramMax[j] < v[j])
+							paramMax[j] = v[j];
+						if (paramMin[j] > v[j])
+							paramMin[j] = v[j];
+					}
+				}
+			}
+
+		std::cout << std::fixed << std::setprecision(2);
 		for (int j = 0; j < paramcol.GetSize(); j++) {
 			const CParameter &param = paramcol.GetParam(j);
-			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 10)) << param.TransformFromQLR(v[j]);
+			double value = param.TransformFromQLR(v[j]);
+			double plus = param.TransformFromQLR(paramMax[j]) - value;
+			double minus = value - param.TransformFromQLR(paramMin[j]);
+			double plusminus = std::max(plus, minus);
+			oss.str("");
+			oss << std::fixed << std::setprecision(2);
+			oss << value << "+-" << plusminus;
+
+			std::cout << std::setw(std::max((int)param.GetName().length() + 2, 17)) << oss.str();
 		}
-	}
-	else {
-		int W = results.CountOutcomes(COutcome::Win);
-		int D = results.CountOutcomes(COutcome::Draw);
-		int L = results.CountOutcomes(COutcome::Loss);
-		double Total = W + D + L;
-		double Score = W + 0.5 * D;
-		double Rate = Score / Total;
-
-		double TotalVariance =
-			W * (1.0 - Rate) * (1.0 - Rate) + D * (0.5 - Rate) * (0.5 - Rate) + L * (0.0 - Rate) * (0.0 - Rate);
-		double Margin = 1.96 * std::sqrt(TotalVariance) / Total;
-
-		const double EloMul = 400.0 / std::log(10.0);
-
-		std::cout << std::setw(10) << reg.Rating(Rate - Margin) * EloMul;
-		std::cout << std::setw(10) << reg.Rating(Rate) * EloMul;
-		std::cout << std::setw(10) << reg.Rating(Rate + Margin) * EloMul;
 	}
 
 	std::cout << '\n';
 	std::cout.flush();
+
+	std::cout << std::defaultfloat;
 	headers++;
 }

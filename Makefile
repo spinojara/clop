@@ -25,6 +25,7 @@ install: all
 	install -m 0755 programs/clop/compqt/clop-console/clop-console $(DESTDIR)$(BINDIR)
 	ln -svf $(DESTDIR)$(BINDIR)/{clop-gui,clop}
 	install -m 0755 chess/clop-cutechess.py $(DESTDIR)$(BINDIR)
+	install -m 0755 chess/clop-fastchess.py $(DESTDIR)$(BINDIR)
 
 
 .PHONY: install all clean

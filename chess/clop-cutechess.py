@@ -50,7 +50,7 @@ cutechess_cli_path = 'cutechess-cli'
 # chosen based on the seed sent by CLOP.
 
 # Additional cutechess-cli options, eg. time control and opening book
-options = '-each proto=uci tc={tc} -draw movenumber=80 movecount=5 score=5 -resign movecount=5 score=500 -openings file={book} order=sequential start={start} format=epd'
+options = '-each proto=uci tc={tc} -draw movenumber=40 movecount=8 score=10 -resign movecount=3 score=800 twosided=true -openings file={book} order=sequential start={start} format=epd'
 
 def tcadjust(tc):
     f = open('/etc/bitbit/tcfactor', 'r')

@@ -72,7 +72,7 @@ def main(argv = None):
     cpu = -1
     clop_seed = 0
     try:
-        cpu = int(argv[3][7:])
+        cpu = int(argv[3])
     except ValueError:
         sys.stderr.write('invalid cpu value: %s\n' % argv[3])
         return 2

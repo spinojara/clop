@@ -116,6 +116,9 @@ def main(argv = None):
     # Note that only one game should be played
     result = -1
     for line in output.decode("utf-8").splitlines():
+        if line.startswith('Warning'):
+            sys.stderr.write(line)
+            return 2
         if line.startswith('Finished game'):
             if line.find(": 1-0") != -1:
                 result = clop_seed % 2

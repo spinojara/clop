@@ -21,11 +21,12 @@ class CRealObserver : public CObserver // robs
 	const CParameterCollection &paramcol;
 	const CMaxEstimator &me;
 	CRegression &reg;
-	int headers;
+	void displayWinRate(double W, double D, double L);
+	void displayMax(const double *v, std::vector<int> &width);
 
       public: ////////////////////////////////////////////////////////////////////
 	CRealObserver(CResults &results, const CParameterCollection &paramcol, const CMaxEstimator &me, CRegression &reg)
-	    : CObserver(results), paramcol(paramcol), me(me), reg(reg), headers(0) {}
+	    : CObserver(results), paramcol(paramcol), me(me), reg(reg) {}
 
 	void OnOutcome(int i);
 };

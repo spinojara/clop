@@ -41,7 +41,7 @@ def tcadjust(tc):
         maintime = float(tc[:i])
         increment = float(tc[i + 1:])
     else:
-        maintime = tc
+        maintime = float(tc)
 
     tc = ''
     if moves > 0:
@@ -106,10 +106,12 @@ def main(argv = None):
     command = '%s %s' % (cutechess_cli_path, cutechess_args)
 
     # Run cutechess-cli and wait for it to finish
-    process = Popen(command, shell = True, stdout = PIPE)
-    output = process.communicate()[0]
+    process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+    output, err = process.communicate()
     if process.returncode != 0:
-        sys.stderr.write('failed to execute command: %s\n' % command)
+        sys.stderr.write('fastchess command: %s\n' % command)
+        sys.stderr.write('fastchess stdout: %s\n' % output)
+        sys.stderr.write('fastchess stderr: %s\n' % err)
         return 2
 
     # Convert Cutechess-cli's result into W/L/D
@@ -118,7 +120,6 @@ def main(argv = None):
     for line in output.decode("utf-8").splitlines():
         if line.startswith('Warning'):
             sys.stderr.write(line)
-            return 2
         if line.startswith('Finished game'):
             if line.find(": 1-0") != -1:
                 result = clop_seed % 2

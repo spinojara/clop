@@ -3,6 +3,7 @@
 
 from subprocess import Popen, PIPE
 import sys
+import configparser
 
 
 # Path to the cutechess-cli executable.
@@ -24,9 +25,9 @@ cutechess_cli_path = 'fastchess'
 options = '-pgnout file={cpu}.pgn -use-affinity {cpu} -rounds 1 -games 1 -each proto=uci tc={tc} -draw movenumber=40 movecount=8 score=10 -resign movecount=3 score=800 twosided=true -openings file={book} order=sequential start={start} format=epd'
 
 def tcadjust(tc):
-    f = open('/etc/bitbit/tcfactor', 'r')
-    tcfactor = float(f.read().strip())
-    f.close()
+    config = configparser.ConfigParser()
+    config.read('/etc/bitbit.ini')
+    tcfactor = config.getfloat('timecontrol', 'tcfactor')
 
     moves = 0
     maintime = 0

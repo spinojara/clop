@@ -60,7 +60,7 @@ def main(argv = None):
     if argv is None:
         argv = sys.argv[1:]
 
-    if len(argv) < 5 or len(argv) % 2 == 0:
+    if len(argv) < 6 or len(argv) % 2 == 1:
         sys.stderr.write('Too few arguments\n')
         return 2
 
@@ -69,26 +69,30 @@ def main(argv = None):
         engine,
     ]
 
-
     cpu = -1
     clop_seed = 0
     try:
-        cpu = int(argv[3])
+        cpu = int(argv[4])
     except ValueError:
-        sys.stderr.write('invalid cpu value: %s\n' % argv[3])
+        sys.stderr.write('invalid cpu value: %s\n' % argv[4])
         return 2
     try:
-        clop_seed = int(argv[4])
+        clop_seed = int(argv[5])
     except ValueError:
-        sys.stderr.write('invalid seed value: %s\n' % argv[4])
+        sys.stderr.write('invalid seed value: %s\n' % argv[5])
         return 2
+
     options = options.format(start=((clop_seed // 2) % 100000) + 1, book=argv[1], tc=tcadjust(argv[2]), cpu=cpu)
+
+    tb = argv[3]
+    if tb.lower() != 'none':
+        options += ' -tb %s -tbadjudicate BOTH' % tb
 
     fcp = engine
     scp = opponents[(clop_seed >> 1) % len(opponents)]
 
     # Parse the parameters that should be optimized
-    for i in range(5, len(argv) - 1, 2):
+    for i in range(6, len(argv) - 1, 2):
         # Make sure the parameter value is numeric
         try:
             float(argv[i + 1])
